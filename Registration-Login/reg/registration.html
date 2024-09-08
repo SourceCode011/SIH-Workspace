@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Registration Page</title>
+</head>
+<body>
+    <div class="container">
+        <div id="registration" class="registration-container">
+            <h1><b>Registration</b></h1>
+            <form id="registrationForm">
+                <label for="regName">Name:</label>
+                <input type="text" id="regName" required>
+
+                <label for="regEmailId">Email:</label>
+                <input type="text" id="regEmailId" required>
+
+                <label for="regEnrollmentNo">Enrollment Number:</label>
+                <input type="text" id="regEnrollmentNo" required>
+                
+                <label for="regPassword">Password:</label>
+                <input type="password" id="regPassword" required>
+
+                <button type="button" onclick="registerUser()">Register</button>
+            </form>
+            <p>Already have an account? <a href="/index.html" onclick="showLogin()">Login here</a>.</p>
+        </div>
+    
+    </div>
+
+    <script src="/script.js"></script>
+    
+</body>
+</html>
