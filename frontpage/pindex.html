@@ -3,42 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Web Page</title>
-  <link rel="stylesheet" href="pstyle.css">
+  <title>Main Page</title>
+  <link rel="stylesheet" href="pstyle.css"> <!-- Link to external CSS -->
 </head>
 <body>
-  <!-- Navigation Menu -->
-  <nav>
-    <div class="hamburger-menu" id="menu">
-      <div class="line"></div>
-      <div class="line"></div>
-      <div class="line"></div>
-    </div>
-    <div class="menu-items" id="menu-items">
-      <a href="#about">About</a>
-      <a href="#chat">Chat</a>
-      <a href="#note">Note</a>
-      <a href="#notification">Notification</a>
-    </div>
-  </nav>
-
-  <!-- Search Bar -->
   <header>
-    <input type="text" class="search-bar" placeholder="Search...">
+    <h1>Main Page</h1>
+    <div class="menu">
+      <button onclick="toggleMenu()">☰</button>
+      <div id="dropdown" class="dropdown">
+        <ul>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="materials.html">Materials</a></li>
+        </ul>
+      </div>
+    </div>
   </header>
 
-  <!-- Main Content (Posts) -->
   <main>
-    <h1>Posts</h1>
-    <div class="posts">
-      <!-- Dynamically load posts here -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <button>Search</button>
+    </div>
+
+    <div class="button-group">
+      <a href="normal.html" class="button">Normal Post</a>
+      <a href="job-post.html" class="button">Job Post</a>
+      <a href="events.html" class="button">Events</a>
     </div>
   </main>
 
-  <!-- Post Button (Plus Icon) -->
-  <button class="post-btn" id="post-btn">+</button>
-
-  <!-- JavaScript for Menu Toggle -->
-  <script src="pscript.js"></script>
+  <script src="pscript.js"></script> <!-- Link to external JavaScript -->
 </body>
 </html>
