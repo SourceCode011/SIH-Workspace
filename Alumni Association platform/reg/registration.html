@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Registration Page</title>
+</head>
+<body>
+    <div class="container">
+        <div id="registration" class="registration-container">
+            <h1><b>Registration</b></h1>
+            <form id="registrationForm">
+                <label for="regName">Full Name:</label>
+                <input type="text" id="regName" required>
+                
+                <label for="regEnrollmentNo">Enrollment Number:</label>
+                <input type="number" id="regEnrollmentNo" required>
+                
+                <label for="regDepartment">Department:</label>
+                <input type="text" id="regDepartment" required>
+
+                <label for="regYear">Graduation Year:</label>
+                <input type="number" id="regYear" required>
+
+
+                <form>
+                    <label for="user-type">Choose your category:</label>
+                    <select id="user-type" name="user-type">
+                      <option value="student">Student</option>
+                      <option value="alumni">Alumni</option>
+                    </select>
+                </form>                  
+                  
+
+    <!-- Profile Picture Upload -->
+    <div class="upload-section">
+        <label for="profile-upload" class="custom-file-upload">Upload Profile Picture</label>
+        <input type="file" id="profile-upload" accept="image/*" required>
+        <span id="profile-filename"><br>No file selected</span><br><br>
+        <button type="button" id="profile-delete" style="display:none;">Delete</button>
+      </div>
+  
+      <!-- ID Proof Upload -->
+      <div class="upload-section">
+        <label for="id-upload" class="custom-file-upload">Upload ID Proof</label>
+        <input type="file" id="id-upload" accept="image/*" required>
+        <span id="id-filename"><br>No file selected</span><br><br>
+        <button type="button" id="id-delete" style="display:none;">Delete</button>
+      </div>
+                  
+                  
+                  
+                              
+                
+                <label for="regContactNo">Contact Number:</label>
+                <input type="number" id="regContactNo" required>
+                
+                <label for="regEmailId">Email ID:</label>
+                <input type="text" id="regEmailId" required>
+
+                <label for="regPassword">Password:</label>
+                <input type="password" id="regPassword" required>
+
+                <button type="button" onclick="registerUser()">Register</button>
+            </form>
+            <p>Already have an account? <a href="/index.html" onclick="showLogin()">Login here</a>.</p>
+        </div>
+    
+    </div>
+
+    <script src="/script.js"></script>
+    <script src="/database.js"></script>
+    
+</body>
+</html>
