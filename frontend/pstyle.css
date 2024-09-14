@@ -1,0 +1,138 @@
+/* Color Definitions */
+:root {
+  --black: #FF000000;
+  --white: #FFFFFFFF;
+  --bgSplashScreen: #92D5F3;
+  --darkBlue: #1c3988;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bgSplashScreen);
+  margin: 0;
+  padding: 0;
+  color: var(--black);
+}
+
+header {
+  background-color: var(--darkBlue);
+  color: var(--white);
+  padding: 15px 20px;
+  text-align: center;
+  position: relative;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.menu {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
+.menu button {
+  background-color: var(--darkBlue);
+  color: var(--white);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: var(--white);
+  border: 1px solid var(--darkBlue);
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown ul li {
+  margin: 0;
+}
+
+.dropdown ul li a {
+  display: block;
+  padding: 10px 15px;
+  color: var(--darkBlue);
+  text-decoration: none;
+}
+
+.dropdown ul li a:hover {
+  background-color: var(--bgSplashScreen);
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.search-bar input {
+  padding: 10px;
+  border: 1px solid var(--darkBlue);
+  border-radius: 5px 0 0 5px;
+  font-size: 16px;
+}
+
+.search-bar button {
+  padding: 10px;
+  border: 1px solid var(--darkBlue);
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+  background-color: var(--darkBlue);
+  color: var(--white);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-bar button:hover {
+  background-color: #123a73;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.button-group .button {
+  padding: 15px 30px;
+  margin: 10px;
+  background-color: var(--darkBlue);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  text-align: center;
+}
+
+.button-group .button:hover {
+  background-color: #123a73;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 600px) {
+  .button-group {
+    flex-direction: column;
+  }
+
+  .button-group .button {
+    width: 100%;
+    margin: 5px 0;
+  }
+}

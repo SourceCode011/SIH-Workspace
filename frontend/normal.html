@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Posts</title>
+    <link rel="stylesheet" href="normal.css"> <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- For icons -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>User Posts</h1>
+        </header>
+        <main>
+            <!-- Create Post Section -->
+            <section class="create-post-section">
+                <h2>Create a Post</h2>
+                <form id="postForm" enctype="multipart/form-data">
+                    <textarea id="postText" placeholder="What's on your mind?" rows="3"></textarea>
+                    <input type="file" id="postMedia" accept="image/*,video/*">
+                    <button type="submit">Post</button>
+                    <div id="postStatus"></div>
+                </form>
+            </section>
+
+            <!-- Posts Feed Section -->
+            <section class="posts-feed">
+                <h2>Feed</h2>
+                <div id="posts">
+                    <!-- Posts will be appended here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="scripts.js"></script> <!-- Link to the JavaScript file -->
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Sharing Platform</title>
+    <link rel="stylesheet" href="materials.css"> <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- For icons -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Material Sharing Platform</h1>
+        </header>
+        <main>
+            <!-- File Upload Section -->
+            <section class="upload-section">
+                <h2>Upload Material</h2>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <input type="file" id="fileInput" name="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.png,.jpeg,.gif,.txt" required>
+                    <input type="url" id="linkInput" placeholder="Or enter a URL" name="link">
+                    <button type="submit">Upload</button>
+                    <div id="uploadStatus"></div>
+                </form>
+            </section>
+
+            <!-- Materials List Section -->
+            <section class="materials-list">
+                <h2>Available Materials</h2>
+                <ul id="materials">
+                    <!-- Material items will be appended here -->
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="materials.js"></script> <!-- Link to the JavaScript file -->
+</body>
+</html>
