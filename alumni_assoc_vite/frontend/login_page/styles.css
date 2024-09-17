@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     /* background: url("bg.jpg"); */
-    background-image: url("/SIH-Workspace/alumni_assoc_vite/frontend/login_page/bg.jpg");
+    background-image: url("./bg.jpg");
     background-size: cover;
     margin: 0;
     display: flex;
