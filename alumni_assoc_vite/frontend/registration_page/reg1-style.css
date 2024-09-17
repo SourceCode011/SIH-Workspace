@@ -6,7 +6,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-image: url("/SIH-Workspace/alumni_assoc_vite/frontend/registration_page/bg.jpg");
+    background-image: url("./bg.jpg");
     background-size: cover;
     /* background: linear-gradient(to right, #00C6FF, #0072FF); */
     height: 100vh;
