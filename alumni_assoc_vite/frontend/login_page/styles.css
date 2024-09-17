@@ -1,0 +1,228 @@
+body {
+    font-family: Arial, sans-serif;
+    /* background: url("bg.jpg"); */
+    background-image: url("/SIH-Workspace/alumni_assoc_vite/frontend/bg.jpg");
+    background-size: cover;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    
+    
+    background-position: center; /* Centers the background image */
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.364); 
+    position: relative;
+     padding: 20px; 
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+
+    /* width: 27%;  
+    height: 70%; */
+    
+    padding: 20px; 
+    width: 90%; /* Default width for all devices */
+    max-width: 350px; /* Default max-width for desktop */
+    margin: auto;
+    height: auto;
+}
+
+.login-container{
+    /* background-color: aqua; */
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-box{
+    position: relative;
+    width: 100%;
+    padding: 10px 0px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.532);
+    /* display: flex; */
+     /* background-color: #4caf50;    */
+    margin: 10px 0px 10px 0px ;
+    /* margin-top: 5px; */
+  
+  }
+
+#one{
+    /* background-color: blue; */
+    margin-bottom: 20px;
+}
+  
+  .input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    font-weight: 500;
+    font-size: 1em;
+    transform: translateY(-50%);
+    color: rgb(0, 0, 0);
+    pointer-events: none;
+    transition: 0.5s;
+  }
+  
+  .input-box input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    outline: none; 
+    box-sizing: border-box;
+    text-align: left;
+    font-weight: 500;
+    padding-right: 37px;
+    
+  }
+  
+  .input-box input:focus ~ label,
+  .input-box input:valid ~ label {
+    top: -5px ;
+  }
+  
+  .input-box .icon{
+    position: absolute;
+    right: 8px;
+    line-height: 4px;
+    font-size: 1.2em;
+  }
+  
+  .remember-me{
+    font-size: 0.9em;
+    font-weight: 500;
+    margin: -5px 0px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: rgba(0, 0, 0, 0.8);
+    /* background-color: bisque; */
+  }
+  
+  .remember-me label input {
+    margin-right: 3px;
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .remember-me a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+  .remember-me a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+.btn{
+    width: 100%;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+a{
+    color: blue;
+    text-decoration: none;
+}
+
+a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+/* Media Queries */
+
+/* Desktop View (default) */
+ 
+
+/* Media Queries */
+
+/* Tablet View */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        padding: 15px;
+        width: 85%;
+        max-width: 500px; /* Adjusted max-width for tablets */
+    }
+
+    .input-box label {
+        font-size: 0.9em; /* Slightly smaller font size for labels */
+    }
+
+    .input-box input {
+        font-size: 0.9em; /* Slightly smaller font size for inputs */
+    }
+
+    .btn {
+        padding: 8px 15px; /* Reduced padding for buttons */
+    }
+
+    .remember-me {
+        font-size: 0.8em; /* Reduced font size for remember-me section */
+    }
+}
+
+/* Mobile View */
+@media (max-width: 767px) {
+    .container {
+        padding: 10px;
+        width: 95%; /* Full width for mobile devices */
+    }
+
+    .input-box label {
+        font-size: 0.8em; /* Smaller font size for labels */
+    }
+
+    .input-box input {
+        font-size: 0.8em; /* Smaller font size for inputs */
+    }
+
+    .btn {
+        padding: 6px 10px; /* Reduced padding for buttons */
+    }
+
+    .remember-me {
+        font-size: 0.8em; /* Reduced font size for remember-me section */
+    }
+}
+
+
+.reg-container {
+    background-color: rgba(255, 255, 255, 0.364); 
+    position: relative;
+    padding: 20px; 
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    height: auto;
+}
+
+.inputbox{
+    display: flex;
+    flex-direction: column;
+}
+
+.column{
+    display: flex;
+}
+
+
