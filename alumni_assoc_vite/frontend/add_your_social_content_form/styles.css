@@ -1,0 +1,120 @@
+/* Color Variables */
+:root {
+    --black: #FF000000;
+    --white: #FFFFFFFF;
+    --gray: #FF808080;
+    --bgSplashScreen: #92D5F3;
+    --darkBlue: #1c3988;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bgSplashScreen);
+    animation: fadeInBody 1s ease;
+}
+
+/* Fade-in animation for the entire page */
+@keyframes fadeInBody {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Form Container Styling */
+.form-container {
+    background-color: var(--white);
+    border-radius: 15px;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Title */
+.form-title {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: var(--darkBlue);
+    text-align: center;
+    animation: slideInTitle 1s ease;
+}
+
+@keyframes slideInTitle {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Form Fields */
+.form-control {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--gray);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.form-control:focus {
+    box-shadow: 0px 0px 10px rgba(28, 57, 136, 0.3);
+    transform: scale(1.02);
+}
+
+/* File upload custom styling */
+.file-input {
+    display: none;
+}
+
+.file-label {
+    background-color: var(--darkBlue);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.file-label:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 15px rgba(28, 57, 136, 0.4);
+}
+
+/* Input file name */
+.file-name {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--gray);
+}
+
+/* Image Preview */
+#image-preview {
+    max-width: 100%;
+    max-height: 250px;
+    border-radius: 8px;
+}
+
+/* Create Button */
+.btn-post {
+    background-color: var(--darkBlue);
+    color: var(--white);
+    padding: 12px 30px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-post:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 8px 20px rgba(28, 57, 136, 0.5);
+}
