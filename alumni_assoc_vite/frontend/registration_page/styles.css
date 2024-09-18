@@ -16,25 +16,24 @@ body {
   align-items: center;
 }
 
-.container {
+.form-container {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 2.5em;
   border-radius: 0.9375em;
   backdrop-filter: blur(10px);
   box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.3);
   width: 21.875em;
+}
+
+form {
   display: flex;
+  flex-direction: column;
 }
 
 h2 {
   text-align: center;
   color: black;
   margin-bottom: 1.25em;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
 }
 
 .input-box {
@@ -108,18 +107,10 @@ form {
   text-decoration: none;
 }
 
-a {
-  color: blue;
-  text-decoration: none;
-}
-
-a:hover {
-  color: blue;
-  text-decoration: underline;
-}
+/* media queries for responsive design */
 
 @media (max-width: 768px) {
-  .container {
+  .form-container {
     width: 50%;
     min-width: 15rem;
   }
@@ -138,7 +129,7 @@ a:hover {
 }
 
 @media (max-width: 480px) {
-  .container {
+  .form-container {
     width: 80%;
     min-width: 12rem;
   }
