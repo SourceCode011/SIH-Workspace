@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Job Opening</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 form-container bg-white p-5 rounded-lg shadow-lg">
+                <h2 class="form-title text-center mb-4 text-2xl font-bold text-darkBlue">Post Job Opening</h2>
+                <form>
+
+                    <!-- Job Title -->
+                    <div class="mb-4">
+                        <label for="title" class="form-label font-medium">Job Title</label>
+                        <input type="text" class="form-control" id="title" placeholder="Enter job title">
+                    </div>
+
+                    <!-- Job Location -->
+                    <div class="mb-4">
+                        <label for="location" class="form-label font-medium">Job Location</label>
+                        <input type="text" class="form-control" id="location" placeholder="Enter job location">
+                    </div>
+
+                    <!-- Job Description -->
+                    <div class="mb-4">
+                        <label for="description" class="form-label font-medium">Job Description</label>
+                        <textarea class="form-control" id="description" rows="4" placeholder="Enter job description"></textarea>
+                    </div>
+
+                    <!-- Job Domain -->
+                    <div class="mb-4">
+                        <label for="domain" class="form-label font-medium">Job Domain</label>
+                        <input type="text" class="form-control" id="domain" placeholder="Enter job domain (e.g., IT, Marketing)">
+                    </div>
+
+                    <!-- Required Skills -->
+                    <div class="mb-4">
+                        <label for="skills" class="form-label font-medium">Required Skills</label>
+                        <input type="text" class="form-control" id="skills" placeholder="Enter required skills (e.g., Java, Python, Sales)">
+                    </div>
+
+                    <!-- Salary -->
+                    <div class="mb-4">
+                        <label for="salary" class="form-label font-medium">Salary</label>
+                        <input type="text" class="form-control" id="salary" placeholder="Enter salary range (e.g., $60,000 - $80,000)">
+                    </div>
+
+                    <!-- Job Mode (Online/Offline) -->
+                    <div class="mb-4">
+                        <label for="job-mode" class="form-label font-medium">Job Mode</label>
+                        <select id="job-mode" class="form-control">
+                            <option>Select mode</option>
+                            <option>Online</option>
+                            <option>Offline</option>
+                            <option>Hybrid</option>
+                        </select>
+                    </div>
+
+                    <!-- Contact Email -->
+                    <div class="mb-4">
+                        <label for="email" class="form-label font-medium">Contact Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter contact email">
+                    </div>
+
+                    <!-- Contact Phone Number -->
+                    <div class="mb-4">
+                        <label for="phone" class="form-label font-medium">Contact Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="Enter contact phone number">
+                    </div>
+
+                    <!-- Post Job Button -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-create bg-darkBlue text-white py-2 px-5 rounded-md hover:shadow-lg hover:bg-blue-800 transition duration-300">Post Job</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- External JS -->
+    <script src="script.js"></script>
+</body>
+</html>
