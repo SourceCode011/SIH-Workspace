@@ -1,115 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Event</title>
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- External CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
-<body>
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6 form-container">
-                <h2 class="form-title">Create New Event</h2>
-                <form>
-
-                    <!-- Title -->
-                    <div class="mb-4">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="title" placeholder="Title">
-                    </div>
-
-                    <!-- Description -->
-                    <div class="mb-4">
-                        <label for="description" class="form-label"></label>
-                        <textarea class="form-control" id="description" rows="4" placeholder="Description"></textarea>
-                    </div>
-
-                    <!-- Mode (Online/Offline) -->
-                    <div class="mb-4">
-                        <label for="mode" class="form-label">Select Mode</label>
-                        <select id="mode" class="form-control">
-                            <option>Select mode</option>
-                            <option>Online</option>
-                            <option>Offline</option>
-                        </select>
-                    </div>
-
-                    <!-- Platform -->
-                    <div class="mb-4">
-                        <label for="platform" class="form-label">Enter Platform</label>
-                        <input type="text" class="form-control" id="platform" placeholder="Enter platform">
-                    </div>
-
-                    <!-- Venue -->
-                    <div class="mb-4">
-                        <label for="platform" class="form-label">Enter Venue</label>
-                        <input type="text" class="form-control" id="platform" placeholder="Enter venue">
-                    </div>
-
-                    <!-- File Upload with Preview -->
-                    <div class="mb-4">
-                        <label for="file-upload" class="form-label">Upload Avatar</label>
-                        <label class="file-label" for="file-upload">Choose File</label>
-                        <input id="file-upload" class="file-input" type="file" accept="image/*" onchange="previewImage(event)">
-                        <span id="file-name" class="file-name">No file chosen</span>
-                        <div id="preview-container" class="mt-3">
-                            <img id="image-preview" class="img-thumbnail hidden" alt="Image Preview">
-                        </div>
-                    </div>
-
-                    <!-- Create Button -->
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-create">Create</button>
-                    </div>
-                    
-                </form>
-            </div>
+<body class="min-h-screen flex items-center justify-center py-12">
+    <div class="container max-w-4xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
+        <div class="bg-custom p-6">
+            <h2 class="text-3xl font-bold text-center text-white">Create New Event</h2>
         </div>
+        <form id="eventCreationForm" class="p-8 space-y-6">
+            <div class="form-group">
+                <label for="title" class="block text-custom font-semibold mb-2">Title</label>
+                <input type="text" id="title" name="title" placeholder="Enter event title"
+                    class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
+            </div>
+
+            <div class="form-group">
+                <label for="description" class="block text-custom font-semibold mb-2">Description</label>
+                <textarea id="description" name="description" rows="4" placeholder="Describe your event"
+                    class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="block text-custom font-semibold mb-4">Select Mode</label>
+                <div class="flex gap-4">
+                    <label for="modeOnline" class="flex-1">
+                        <input type="radio" id="modeOnline" name="mode" value="online" class="peer hidden" checked>
+                        <div
+                            class="radio-default hover:bg-gray-200 cursor-pointer transition-all duration-200 ease-in-out rounded-full py-2 px-4 text-center font-semibold">
+                            Online
+                        </div>
+                    </label>
+                    <label for="modeOffline" class="flex-1">
+                        <input type="radio" id="modeOffline" name="mode" value="offline" class="peer hidden">
+                        <div
+                            class="radio-default hover:bg-gray-200 cursor-pointer transition-all duration-200 ease-in-out rounded-full py-2 px-4 text-center font-semibold">
+                            Offline
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group" id="platformField">
+                <label for="platform" class="block text-custom font-semibold mb-2">Platform</label>
+                <input type="text" id="platform" name="platform" placeholder="Enter platform"
+                    class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
+            </div>
+
+            <div class="form-group" id="venueField" style="display: none;">
+                <label for="venue" class="block text-custom font-semibold mb-2">Venue</label>
+                <input type="text" id="venue" name="venue" placeholder="Enter venue"
+                    class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
+            </div>
+
+            <div class="form-group">
+                <label for="eventImage" class="block text-custom font-semibold mb-2">Upload Event Image</label>
+                <div id="dropZone"
+                    class="file-drop-zone flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-transparent hover:bg-gray-100">
+                    <svg class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                        </path>
+                    </svg>
+                    <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and
+                        drop</p>
+                    <p class="text-xs text-gray-500">PNG or JPG (MAX. 800x400px)</p>
+                </div>
+                <input id="eventImage" name="eventImage" type="file" class="hidden" accept="image/*" />
+                <p id="eventImageName" class="mt-2 text-sm text-gray-600">No file chosen</p>
+            </div>
+
+            <div class="form-group">
+                <button type="submit"
+                    class="w-full p-4 bg-custom text-white font-bold rounded-lg hover:bg-custom-dark transition duration-300 hover:shadow-lg">Create
+                    Event</button>
+            </div>
+        </form>
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- External JS -->
-    <script>
-        // Image preview function
-        function previewImage(event) {
-            const fileInput = document.getElementById('file-upload');
-            const fileName = document.getElementById('file-name');
-            const previewContainer = document.getElementById('preview-container');
-            const imagePreview = document.getElementById('image-preview');
-
-            const file = fileInput.files[0];
-            fileName.textContent = file ? file.name : 'No file chosen';
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    imagePreview.src = e.target.result;
-                    imagePreview.classList.remove('hidden');
-                };
-                reader.readAsDataURL(file);
-            } else {
-                imagePreview.src = '';
-                imagePreview.classList.add('hidden');
-            }
-        }
-    </script>
-
-    <!-- External JS -->
-    <script src="script.js"></script>
 </body>
+
 </html>

@@ -1,113 +1,78 @@
-/* Color Variables */
-:root {
-    --black: #FF000000;
-    --white: #FFFFFFFF;
-    --gray: #FF808080;
-    --bgSplashScreen: #92D5F3;
-    --darkBlue: #1c3988;
-}
-
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--bgSplashScreen);
-    animation: fadeInBody 1s ease;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #a2e0e1 100%);
 }
 
-/* Fade-in animation for the entire page */
-@keyframes fadeInBody {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.container {
+  animation: fadeIn 1s ease-in-out;
 }
 
-/* Form Container Styling */
-.form-container {
-    background-color: var(--white);
-    border-radius: 15px;
-    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.form-container:hover {
-    transform: translateY(-10px);
-    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
+.form-input,
+textarea,
+select {
+  border: 2px solid #2c7772;
+  background: transparent;
 }
 
-/* Form Title */
-.form-title {
-    font-weight: 700;
-    font-size: 2rem;
-    margin-bottom: 25px;
-    color: var(--darkBlue);
-    text-align: center;
-    animation: slideInTitle 1s ease;
+.form-input:focus,
+textarea:focus,
+select:focus,
+.form-input:hover,
+textarea:hover,
+select:hover {
+  outline: none;
+  box-shadow: 0 0 10px 2px rgba(89, 175, 174, 0.8);
 }
 
-@keyframes slideInTitle {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.form-group input[type="file"] {
+  border: 2px solid #2c7772;
+  padding: 1rem;
+  border-radius: 0.375rem;
+  background: transparent;
 }
 
-/* Form Fields */
-.form-control {
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid var(--gray);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+.form-group input[type="file"]::file-selector-button {
+  @apply bg-custom text-white font-bold py-2 px-4 rounded;
 }
 
-.form-control:focus {
-    box-shadow: 0px 0px 10px rgba(28, 57, 136, 0.3);
-    transform: scale(1.02);
+.form-group input[type="file"]:hover,
+.form-group input[type="file"]:focus {
+  box-shadow: 0 0 10px 2px rgba(89, 175, 174, 0.8);
 }
 
-/* File upload custom styling */
-.file-input {
-    display: none;
+.form-group button:hover {
+  box-shadow: 0 0 10px rgba(89, 175, 174, 0.8);
 }
 
-.file-label {
-    background-color: var(--darkBlue);
-    color: var(--white);
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    display: inline-block;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.radio-default {
+  background-color: #f9fafb;
+  color: #2c7772;
 }
 
-.file-label:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 4px 15px rgba(28, 57, 136, 0.4);
+.radio-selected {
+  background-color: #2c7772;
+  color: #f9fafb;
 }
 
-/* Input file name */
-.file-name {
-    margin-top: 10px;
-    font-size: 14px;
-    color: var(--gray);
+.bg-custom {
+  background-color: #2c7772;
 }
 
-/* Create Button */
-.btn-create {
-    background-color: var(--darkBlue);
-    color: var(--white);
-    padding: 12px 30px;
-    border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.bg-custom-dark {
+  background-color: #1e3a8a;
 }
 
-.btn-create:hover {
-    transform: translateY(-3px);
-    box-shadow: 0px 8px 20px rgba(28, 57, 136, 0.5);
+.text-custom {
+  color: #2c7772;
 }
