@@ -1,6 +1,7 @@
 import AuthServices from "../../firebase/services/auth/AuthServices.js";
 import UserServicesDB from "../../firebase/services/firestore_db/UserServicesDB.js";
 import UserNameServicesDB from "../../firebase/services/firestore_db/UserNameServicesDB.js";
+import ValidationUtils from "../../utils/validation_utils.js";
 
 const authService = new AuthServices();
 const userServicesDB = new UserServicesDB();
@@ -13,15 +14,16 @@ document.getElementById("regForm").addEventListener("submit", async (event) => {
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
 
-  if (!isValidUsername(username)) {
+  // Validate input using ValidationUtils
+  if (!ValidationUtils.isValidUsername(username)) {
     alert("Invalid username");
     return;
   }
-  if (!isValidEmail(email)) {
+  if (!ValidationUtils.isValidEmail(email)) {
     alert("Invalid email format");
     return;
   }
-  if (!isValidPassword(password)) {
+  if (!ValidationUtils.isValidPassword(password)) {
     alert("Password too weak, must be 6 characters or more.");
     return;
   }
@@ -48,16 +50,3 @@ document.getElementById("regForm").addEventListener("submit", async (event) => {
     alert("Sign-up failed: " + error.message);
   }
 });
-
-function isValidUsername(username) {
-  return username.length >= 3;
-}
-
-function isValidEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
-
-function isValidPassword(password) {
-  return password.length >= 6;
-}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <script src="./script.js" type="module" defer></script>
+    <title>Additional Details Form</title>
+</head>
+
+<body>
+    <div class="container max-w-4xl mx-auto p-8 bg-white shadow-xl rounded-lg">
+        <form id="additionalDetailsForm" class="space-y-6">
+            <!-- Heading -->
+            <h2 class="text-4xl font-bold text-center text-blue-900 mb-8">Tell Us About Yourself</h2>
+
+            <!-- Full Name -->
+            <div class="form-group">
+                <label for="fullName" class="block text-blue-900 font-semibold mb-2">Full Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name"
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
+            </div>
+
+            <!-- Enrollment Number -->
+            <div class="form-group">
+                <label for="enrollmentNum" class="block text-blue-900 font-semibold mb-2">Enrollment Number</label>
+                <input type="text" id="enrollmentNum" name="enrollmentNum" placeholder="Enter your enrollment number"
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
+            </div>
+
+            <!-- Contact Number -->
+            <div class="form-group">
+                <label for="contactNum" class="block text-blue-900 font-semibold mb-2">Contact Number</label>
+                <input type="tel" id="contactNum" name="contactNum" placeholder="Enter your contact number"
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
+            </div>
+
+            <!-- Type Radio Group -->
+            <div class="form-group">
+                <label class="block text-blue-900 font-semibold mb-4">Select User Type</label>
+                <div class="flex gap-4">
+                    <label for="radioStudent" class="flex-1">
+                        <input type="radio" id="radioStudent" name="type" value="student" class="peer hidden" checked>
+                        <div
+                            class="radio-default hover:bg-gray-200 cursor-pointer transition-all duration-200 ease-in-out rounded-full py-2 px-4 text-center font-semibold">
+                            Student
+                        </div>
+                    </label>
+                    <label for="radioAlumni" class="flex-1">
+                        <input type="radio" id="radioAlumni" name="type" value="alumni" class="peer hidden">
+                        <div
+                            class="radio-default hover:bg-gray-200 cursor-pointer transition-all duration-200 ease-in-out rounded-full py-2 px-4 text-center font-semibold">
+                            Alumni
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Year of Study -->
+            <div class="form-group" id="yearOfStudyGroup" style="display: none;">
+                <label for="yearOfStudy" class="block text-blue-900 font-semibold mb-2">Select Year of Study</label>
+                <select id="yearOfStudy" name="yearOfStudy"
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
+                    <option value="" disabled selected>Select Year</option>
+                    <option value="Year 1">Year 1</option>
+                    <option value="Year 2">Year 2</option>
+                    <option value="Year 3">Year 3</option>
+                    <option value="Year 4">Year 4</option>
+                </select>
+            </div>
+
+            <!-- Graduation Year -->
+            <div class="form-group" id="graduationYearGroup" style="display: none;">
+                <label for="graduationYear" class="block text-blue-900 font-semibold mb-2">Select Graduation
+                    Year</label>
+                <select id="graduationYear" name="graduationYear"
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
+                    <option value="" disabled selected>Select Year</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                </select>
+            </div>
+
+            <!-- Workplace -->
+            <div class="form-group" id="workplaceGroup" style="display: none;">
+                <label for="workplace" class="block text-blue-900 font-semibold mb-2">Workplace</label>
+                <input type="text" id="workplace" name="workplace" placeholder="Enter your workplace"
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
+            </div>
+
+            <!-- Current Location -->
+            <div class="form-group">
+                <label for="currentLocation" class="block text-blue-900 font-semibold mb-2">Current Location</label>
+                <input type="text" id="currentLocation" name="currentLocation" placeholder="Enter your current location"
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
+            </div>
+
+            <!-- Domain -->
+            <div class="form-group">
+                <label for="domain" class="block text-blue-900 font-semibold mb-2">Domain</label>
+                <input type="text" id="domain" name="domain" placeholder="Enter your domain"
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
+            </div>
+
+            <!-- Bio -->
+            <div class="form-group">
+                <label for="bio" class="block text-blue-900 font-semibold mb-2">Bio</label>
+                <textarea id="bio" name="bio" placeholder="Enter your bio"
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300 h-32 resize-none"></textarea>
+            </div>
+
+            <!-- Profile Picture Upload -->
+            <div class="form-group">
+                <label for="profilePic" class="block text-blue-900 font-semibold mb-2">Upload Profile Picture</label>
+                <input type="file" id="profilePic" name="profilePic"
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
+                <span id="profilePicName" class="block mt-2 text-gray-600"></span>
+            </div>
+
+            <!-- ID Proof Upload -->
+            <div class="form-group">
+                <label for="idProof" class="block text-blue-900 font-semibold mb-2">Upload ID Proof</label>
+                <input type="file" id="idProof" name="idProof"
+                    class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
+                <span id="idProofName" class="block mt-2 text-gray-600"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <button type="submit"
+                    class="w-full p-4 bg-blue-900 text-white font-bold rounded-lg hover:bg-blue-400 transition duration-300 hover:shadow-lg">Submit</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
