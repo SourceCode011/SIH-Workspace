@@ -39,14 +39,15 @@ document.getElementById("regForm").addEventListener("submit", async (event) => {
     const userId = userCredential.user.uid;
 
     await userServicesDB.addUser(userId, username, email);
-
     await userNameServicesDB.addUsername(username);
 
     alert("Sign-up successful");
 
-    window.location.href = "../../index.html";
+    // Navigate to additional details form
+    window.location.href = "../user_details_form/index.html";
   } catch (error) {
     console.error("Error during sign-up process:", error);
     alert("Sign-up failed: " + error.message);
   }
 });
+
