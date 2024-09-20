@@ -1,7 +1,9 @@
 import AuthServices from "../../firebase/services/auth/AuthServices.js";
+import UserServicesDB from "../../firebase/services/firestore_db/UserServicesDB.js";
 import ValidationUtils from "../../utils/validation_utils.js";
 
 const authService = new AuthServices();
+const userService = new UserServicesDB();
 
 async function validateLogin(event) {
   event.preventDefault();
@@ -21,8 +23,18 @@ async function validateLogin(event) {
 
   try {
     await authService.signIn(loginEmail, loginPassword);
-    alert("Login successful!");
-    window.location.href = "../../index.html"; //later on path may be changed based on req now its set for testing only
+    const currentUser = authService.getCurrentUser();
+
+    if (currentUser) {
+      const user = await userService.getUser(currentUser.uid);
+      if (user && !user.is_complete) {
+        window.location.href = "../user_details_form/index.html"; // Navigate to additional details form
+      } else {
+        window.location.href = "../../index.html"; // Navigate to main page
+      }
+    } else {
+      alert("Sign-in successful, but unable to fetch user details.");
+    }
   } catch (error) {
     alert("Invalid login. Please try again.");
     console.error("Login failed:", error);
