@@ -1,103 +1,49 @@
-/* Color Variables */
-:root {
-    --black: #FF000000;
-    --white: #FFFFFFFF;
-    --gray: #FF808080;
-    --bgSplashScreen: #92D5F3;
-    --darkBlue: #1c3988;
-}
-
-/* Apply background color outside of container */
-.background-container {
-    background-color: var(--bgSplashScreen); /* Background color for the entire page */
-    min-height: 100vh; /* Ensure it covers the full viewport height */
-    padding: 20px; /* Add some padding around the container */
-}
-
-/* Form Container Styling */
-.form-container {
-    background-color: var(--white);
-    border-radius: 15px;
-    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.form-container:hover {
-    transform: translateY(-10px);
-    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-/* Form Title */
-.form-title {
-    font-weight: 700;
-    font-size: 2rem;
-    margin-bottom: 25px;
-    color: var(--darkBlue);
-    text-align: center;
-    animation: slideInTitle 1s ease;
-}
-
-@keyframes slideInTitle {
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #a2e0e1 100%);
+  }
+  
+  .container {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
     from {
-        opacity: 0;
-        transform: translateX(-50px);
+      opacity: 0;
+      transform: translateY(20px);
     }
     to {
-        opacity: 1;
-        transform: translateX(0);
+      opacity: 1;
+      transform: translateY(0);
     }
-}
-
-/* Form Fields */
-.form-control {
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid var(--gray);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.form-control:focus {
-    box-shadow: 0px 0px 10px rgba(28, 57, 136, 0.3);
-    transform: scale(1.02);
-}
-
-/* File Upload */
-.file-input {
-    display: none;
-}
-
-.file-label {
-    background-color: var(--darkBlue);
-    color: var(--white);
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    display: inline-block;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.file-label:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 4px 15px rgba(28, 57, 136, 0.4);
-}
-
-.file-name {
-    margin-top: 10px;
-    font-size: 14px;
-    color: var(--gray);
-}
-
-/* Create Button */
-.btn-create {
-    background-color: var(--darkBlue);
-    color: var(--white);
-    padding: 12px 30px;
-    border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn-create:hover {
-    transform: translateY(-3px);
-    box-shadow: 0px 8px 20px rgba(28, 57, 136, 0.5);
-}
+  }
+  
+  .form-input,
+  textarea,
+  select {
+    border: 2px solid #2c7772;
+    background: transparent;
+  }
+  
+  .form-input:focus,
+  textarea:focus,
+  select:focus,
+  .form-input:hover,
+  textarea:hover,
+  select:hover {
+    outline: none;
+    box-shadow: 0 0 10px 2px rgba(89, 175, 174, 0.8);
+  }
+  
+  .bg-custom {
+    background-color: #2c7772;
+  }
+  
+  .bg-custom-dark {
+    background-color: #1e3a8a;
+  }
+  
+  .text-custom {
+    color: #2c7772;
+  }
+  
