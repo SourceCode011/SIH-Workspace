@@ -55,8 +55,10 @@ class AuthServices {
     }
   }
 
-  getCurrentUser() {
-    return mAuth.currentUser;
+  getCurrentUser(callback) {
+    onAuthStateChanged(mAuth, (user) => {
+      callback(user);
+    });
   }
 
   onAuthStateChanged(callback) {

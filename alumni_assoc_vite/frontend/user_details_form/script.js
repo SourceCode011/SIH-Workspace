@@ -23,9 +23,8 @@ radioButtons.forEach((radio) => {
   });
 });
 
-authService.onAuthStateChanged(async (user) => {
-  if (user) {
-    const currentUser = user;
+authService.getCurrentUser(async (currentUser) => {
+  if (currentUser) {
     const form = document.getElementById("additionalDetailsForm");
     const typeRadioButtons = document.querySelectorAll('input[name="type"]');
     const yearOfStudyGroup = document.getElementById("yearOfStudyGroup");
@@ -146,19 +145,24 @@ authService.onAuthStateChanged(async (user) => {
 
         // Update user in Firestore
         const user = {
-          type,
-          full_name: fullName,
-          enrollment_num: enrollmentNum,
-          contact_num: contactNum,
-          current_location: currentLocation,
-          domain,
-          bio,
+          user_id: currentUser.uid,
+          user_name: currentUser.displayName || null,
+          email: currentUser.email,
+          bio: bio || null,
+          contact_num: contactNum || null,
+          current_location: currentLocation || null,
+          domain: domain || null,
+          enrollment_num: enrollmentNum || null,
+          full_name: fullName || null,
+          graduation_year: type === "alumni" ? graduationYear : null,
+          id_proof_url: idProofUrl || null,
+          is_complete: true,
+          is_verified: false,
+          pf_pic_url: profilePicUrl || null,
+          posts: [],
+          type: type || null,
           workplace: type === "alumni" ? workplace : null,
           year_of_study: type === "student" ? yearOfStudy : null,
-          graduation_year: type === "alumni" ? graduationYear : null,
-          pf_pic_url: profilePicUrl,
-          id_proof_url: idProofUrl,
-          is_complete: true,
         };
 
         await userService.updateUser(currentUser.uid, user);

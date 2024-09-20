@@ -15,185 +15,196 @@ const eventImageName = document.getElementById("eventImageName");
 const dropZone = document.getElementById("dropZone");
 
 const authService = new AuthServices();
-const currentUser = authService.getCurrentUser();
 
-function toggleFields() {
-  if (modeOnline.checked) {
-    platformField.style.display = "block";
-    venueField.style.display = "none";
-  } else {
-    platformField.style.display = "none";
-    venueField.style.display = "block";
+authService.getCurrentUser(async (currentUser) => {
+  if (!currentUser) {
+    console.error("No user is signed in.");
+    return;
   }
-}
 
-modeOnline.addEventListener("change", toggleFields);
-modeOffline.addEventListener("change", toggleFields);
-
-// Initial toggle
-toggleFields();
-
-// File upload handling
-function handleFiles(files) {
-  if (files.length > 0) {
-    eventImage.files = files;
-    eventImageName.textContent = files[0].name;
-  } else {
-    eventImageName.textContent = "No file chosen";
+  function toggleFields() {
+    if (modeOnline.checked) {
+      platformField.style.display = "block";
+      venueField.style.display = "none";
+    } else {
+      platformField.style.display = "none";
+      venueField.style.display = "block";
+    }
   }
-}
 
-// Click to upload
-dropZone.addEventListener("click", function (e) {
-  eventImage.click();
-});
+  modeOnline.addEventListener("change", toggleFields);
+  modeOffline.addEventListener("change", toggleFields);
 
-eventImage.addEventListener("change", function (e) {
-  handleFiles(this.files);
-});
+  // Initial toggle
+  toggleFields();
 
-// Drag and drop functionality
-dropZone.addEventListener("dragover", function (e) {
-  e.preventDefault();
-  e.stopPropagation();
-  this.classList.add("border-blue-500");
-});
+  // File upload handling
+  function handleFiles(files) {
+    if (files.length > 0) {
+      eventImage.files = files;
+      eventImageName.textContent = files[0].name;
+    } else {
+      eventImageName.textContent = "No file chosen";
+    }
+  }
 
-dropZone.addEventListener("dragleave", function (e) {
-  e.preventDefault();
-  e.stopPropagation();
-  this.classList.remove("border-blue-500");
-});
+  // Click to upload
+  dropZone.addEventListener("click", function (e) {
+    eventImage.click();
+  });
 
-dropZone.addEventListener("drop", function (e) {
-  e.preventDefault();
-  e.stopPropagation();
-  this.classList.remove("border-blue-500");
-  handleFiles(e.dataTransfer.files);
-});
+  eventImage.addEventListener("change", function (e) {
+    handleFiles(this.files);
+  });
 
-// Radio button styling on selection
-const radioButtons = document.querySelectorAll('input[name="mode"]');
-radioButtons.forEach((radio) => {
-  radio.addEventListener("click", function () {
-    radioButtons.forEach((r) => {
-      const label = r.nextElementSibling;
-      if (r.checked) {
-        label.classList.add("radio-selected");
-        label.classList.remove("radio-default");
-      } else {
-        label.classList.add("radio-default");
-        label.classList.remove("radio-selected");
-      }
+  // Drag and drop functionality
+  dropZone.addEventListener("dragover", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.classList.add("border-blue-500");
+  });
+
+  dropZone.addEventListener("dragleave", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.classList.remove("border-blue-500");
+  });
+
+  dropZone.addEventListener("drop", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.classList.remove("border-blue-500");
+    handleFiles(e.dataTransfer.files);
+  });
+
+  // Radio button styling on selection
+  const radioButtons = document.querySelectorAll('input[name="mode"]');
+  radioButtons.forEach((radio) => {
+    radio.addEventListener("click", function () {
+      radioButtons.forEach((r) => {
+        const label = r.nextElementSibling;
+        if (r.checked) {
+          label.classList.add("radio-selected");
+          label.classList.remove("radio-default");
+        } else {
+          label.classList.add("radio-default");
+          label.classList.remove("radio-selected");
+        }
+      });
     });
   });
-});
 
-// Prevent form submission (for demonstration)
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  handleSubmit();
-});
+  // Prevent form submission (for demonstration)
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    handleSubmit();
+  });
 
-async function handleSubmit() {
-  const titleValue = document.getElementById("title").value.trim();
-  const descriptionValue = document.getElementById("description").value.trim();
-  const modeValue = document.querySelector('input[name="mode"]:checked').value;
-  const platformValue = document.getElementById("platform").value.trim();
-  const venueValue = document.getElementById("venue").value.trim();
+  async function handleSubmit() {
+    const titleValue = document.getElementById("title").value.trim();
+    const descriptionValue = document
+      .getElementById("description")
+      .value.trim();
+    const modeValue = document.querySelector(
+      'input[name="mode"]:checked'
+    ).value;
+    const platformValue = document.getElementById("platform").value.trim();
+    const venueValue = document.getElementById("venue").value.trim();
 
-  if (!ValidationUtils.isValidTitle(titleValue)) {
-    alert("Invalid title.");
-    return;
-  }
-  if (!ValidationUtils.isValidDescription(descriptionValue)) {
-    alert("Invalid description.");
-    return;
-  }
-  if (!ValidationUtils.isValidMode(modeValue)) {
-    alert("Invalid mode.");
-    return;
-  }
-  if (
-    modeValue === "online" &&
-    !ValidationUtils.isValidPlatform(platformValue)
-  ) {
-    alert("Invalid platform.");
-    return;
-  }
-  if (modeValue === "offline" && !ValidationUtils.isValidVenue(venueValue)) {
-    alert("Invalid venue.");
-    return;
-  }
-
-  const postServicesDB = new PostServicesDB();
-  const eventServicesDB = new EventServicesDB();
-  const userServicesDB = new UserServicesDB();
-  const storageServices = new StorageServices();
-
-  const postId = postServicesDB.generateUniquePostId();
-  const eventId = eventServicesDB.generateUniqueEventId();
-  const avatarPath = `/posts/event_avatars/${eventId}`;
-
-  let avatarUrl = null;
-
-  // Upload avatar if available
-  if (eventImage.files.length > 0) {
-    try {
-      await storageServices.uploadFile(eventImage.files[0], avatarPath);
-      avatarUrl = await storageServices.getDownloadUrl(avatarPath);
-    } catch (error) {
-      console.error("Failed to upload avatar", error);
-      alert("Failed to upload avatar.");
+    if (!ValidationUtils.isValidTitle(titleValue)) {
+      alert("Invalid title.");
       return;
     }
-  }
+    if (!ValidationUtils.isValidDescription(descriptionValue)) {
+      alert("Invalid description.");
+      return;
+    }
+    
+    if (!ValidationUtils.isValidMode(modeValue)) {
+      alert("Invalid mode.");
+      return;
+    }
+    if (
+      modeValue === "online" &&
+      !ValidationUtils.isValidPlatform(platformValue)
+    ) {
+      alert("Invalid platform.");
+      return;
+    }
+    if (modeValue === "offline" && !ValidationUtils.isValidVenue(venueValue)) {
+      alert("Invalid venue.");
+      return;
+    }
 
-  // Create post object
-  const post = {
-    post_id: postId,
-    type: "event",
-    user_id: currentUser.uid,
-    created_at: new Date().toISOString(),
-  };
+    const postServicesDB = new PostServicesDB();
+    const eventServicesDB = new EventServicesDB();
+    const userServicesDB = new UserServicesDB();
+    const storageServices = new StorageServices();
 
-  try {
-    // Add post to Firestore
-    await postServicesDB.addPost(post);
+    const postId = postServicesDB.generateUniquePostId();
+    const eventId = eventServicesDB.generateUniqueEventId();
+    const avatarPath = `/posts/event_avatars/${eventId}`;
 
-    // Create event object
-    const event = {
-      avatar_url: avatarUrl,
-      description: descriptionValue,
-      event_id: eventId,
-      mode: modeValue,
-      platform: platformValue,
+    let avatarUrl = null;
+
+    // Upload avatar if available
+    if (eventImage.files.length > 0) {
+      try {
+        await storageServices.uploadFile(eventImage.files[0], avatarPath);
+        avatarUrl = await storageServices.getDownloadUrl(avatarPath);
+      } catch (error) {
+        console.error("Failed to upload avatar", error);
+        alert("Failed to upload avatar.");
+        return;
+      }
+    }
+
+    // Create post object
+    const post = {
       post_id: postId,
-      title: titleValue,
-      venue: venueValue,
+      type: "event",
       user_id: currentUser.uid,
+      created_at: new Date().toISOString(),
     };
 
-    // Add event to Firestore
-    await eventServicesDB.addEvent(event);
+    try {
+      // Add post to Firestore
+      await postServicesDB.addPost(post);
 
-    // Fetch current user
-    const user = await userServicesDB.getUser(currentUser.uid);
-    if (user) {
-      // Add new post ID to user's posts
-      const userPosts = user.posts || [];
-      userPosts.push(postId);
-      user.posts = userPosts;
+      // Create event object
+      const event = {
+        avatar_url: avatarUrl,
+        description: descriptionValue,
+        event_id: eventId,
+        mode: modeValue,
+        platform: platformValue,
+        post_id: postId,
+        title: titleValue,
+        venue: venueValue,
+        user_id: currentUser.uid,
+      };
 
-      // Update user in Firestore
-      await userServicesDB.updateUser(currentUser.uid, user);
-      alert("Event created successfully.");
-    } else {
-      console.error("User not found.");
-      alert("User not found.");
+      // Add event to Firestore
+      await eventServicesDB.addEvent(event);
+
+      // Fetch current user
+      const user = await userServicesDB.getUser(currentUser.uid);
+      if (user) {
+        // Add new post ID to user's posts
+        const userPosts = user.posts || [];
+        userPosts.push(postId);
+        user.posts = userPosts;
+
+        // Update user in Firestore
+        await userServicesDB.updateUser(currentUser.uid, user);
+        alert("Event created successfully.");
+      } else {
+        console.error("User not found.");
+        alert("User not found.");
+      }
+    } catch (error) {
+      console.error("Error creating event", error);
+      alert("Error creating event.");
     }
-  } catch (error) {
-    console.error("Error creating event", error);
-    alert("Error creating event.");
   }
-}
+});

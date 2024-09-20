@@ -23,18 +23,18 @@ async function validateLogin(event) {
 
   try {
     await authService.signIn(loginEmail, loginPassword);
-    const currentUser = authService.getCurrentUser();
-
-    if (currentUser) {
-      const user = await userService.getUser(currentUser.uid);
-      if (user && !user.is_complete) {
-        window.location.href = "../user_details_form/index.html"; // Navigate to additional details form
+    authService.getCurrentUser(async (currentUser) => {
+      if (currentUser) {
+        const user = await userService.getUser(currentUser.uid);
+        if (user && !user.is_complete) {
+          window.location.href = "../user_details_form/index.html"; // Navigate to additional details form
+        } else {
+          window.location.href = "../../index.html"; // Navigate to main page
+        }
       } else {
-        window.location.href = "../../index.html"; // Navigate to main page
+        alert("Sign-in successful, but unable to fetch user details.");
       }
-    } else {
-      alert("Sign-in successful, but unable to fetch user details.");
-    }
+    });
   } catch (error) {
     alert("Invalid login. Please try again.");
     console.error("Login failed:", error);
