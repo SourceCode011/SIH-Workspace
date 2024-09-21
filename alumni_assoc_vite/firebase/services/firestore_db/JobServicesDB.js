@@ -17,6 +17,15 @@ class JobServicesDB {
   static COLLECTION_NAME = "jobs";
 
   /**
+   * Generates a unique job ID.
+   *
+   * @return {string} - A unique job ID.
+   */
+  generateUniqueJobId() {
+    return "JI" + doc(collection(db, JobServicesDB.COLLECTION_NAME)).id;
+  }
+
+  /**
    * Adds a new job to the Firestore database.
    *
    * @param {Object} job - The job object to be added.
