@@ -50,3 +50,21 @@ select:hover {
 .form-group button:hover {
   box-shadow: 0 0 10px rgba(89, 175, 174, 0.8);
 }
+
+/* Back Arrow Styling */
+.back-arrow {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.back-arrow svg {
+  width: 30px;
+  height: 30px;
+  color: #ffffff; /* White color */
+  transition: color 0.3s ease;
+}
+
+.back-arrow:hover svg {
+  color: #004b23; /* Darker green on hover */
+}

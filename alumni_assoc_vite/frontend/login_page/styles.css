@@ -1,9 +1,11 @@
+/* Reset margins and padding */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Styling for body and background */
 body {
   font-family: Arial, sans-serif;
   background-image: url("./bg.jpg");
@@ -16,6 +18,7 @@ body {
   align-items: center;
 }
 
+/* Container styling */
 .container {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 2.5em;
@@ -24,14 +27,17 @@ body {
   box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.3);
   width: 21.875em;
   display: flex;
+  flex-direction: column;
 }
 
+/* Heading style */
 h2 {
   text-align: center;
   color: black;
   margin-bottom: 1.25em;
 }
 
+/* Form and input box styling */
 form {
   display: flex;
   flex-direction: column;
@@ -84,6 +90,7 @@ form {
   display: none;
 }
 
+/* Button styling */
 .btn {
   background-color: #4caf50;
   color: white;
@@ -108,6 +115,7 @@ form {
   text-decoration: none;
 }
 
+/* Link styling */
 a {
   color: blue;
   text-decoration: none;
@@ -118,6 +126,7 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Media queries for responsiveness */
 @media (max-width: 768px) {
   .container {
     width: 50%;
@@ -155,3 +164,24 @@ a:hover {
     font-size: 0.875em;
   }
 }
+
+/* Back Arrow Styling */
+.back-arrow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+  color: #ffffff; /* White color */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.back-arrow svg {
+  width: 28px;
+  height: 28px;
+}
+
+.back-arrow:hover {
+  color: #004b23; /* Darker green on hover */
+}
+
+

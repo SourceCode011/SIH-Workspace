@@ -1,9 +1,11 @@
+/* Reset margin and padding */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Background styling for body */
 body {
   font-family: Arial, sans-serif;
   background-image: url("./bg.jpg");
@@ -16,6 +18,7 @@ body {
   align-items: center;
 }
 
+/* Container styling */
 .form-container {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 2.5em;
@@ -25,6 +28,7 @@ body {
   width: 21.875em;
 }
 
+/* Form styling */
 form {
   display: flex;
   flex-direction: column;
@@ -36,6 +40,7 @@ h2 {
   margin-bottom: 1.25em;
 }
 
+/* Input box styling */
 .input-box {
   position: relative;
   margin-bottom: 1.875em;
@@ -77,12 +82,14 @@ h2 {
   font-size: 1.2em;
 }
 
+/* Error message styling */
 .error-message {
   color: red;
   font-size: 0.9em;
   display: none;
 }
 
+/* Button styling */
 .btn {
   background-color: #4caf50;
   color: white;
@@ -107,8 +114,28 @@ h2 {
   text-decoration: none;
 }
 
-/* media queries for responsive design */
+/* Back Arrow Styling */
+.back-arrow {
+  display: inline-flex;
+  align-items: center;
+  color: #ffffff; /* White color */
+  text-decoration: none;
+  margin-bottom: 1em;
+  transition: color 0.3s ease;
+}
 
+.icon-back-arrow {
+  width: 28px;
+  height: 28px;
+}
+
+.back-arrow:hover {
+  color: #004b23; /* Darker green on hover */
+}
+
+
+
+/* Responsive styling */
 @media (max-width: 768px) {
   .form-container {
     width: 50%;
