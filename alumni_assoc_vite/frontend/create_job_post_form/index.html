@@ -4,94 +4,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Job Opening</title>
+    <title>Create Social Post</title>
+
+    <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- External CSS -->
     <link rel="stylesheet" href="styles.css">
-    <script type="module" src="./script.js"></script>
+
+    <script src="script.js" type="module" defer></script>
 </head>
 
-<body class="bg-gray-100 min-h-screen flex items-center justify-center py-12">
+<body class="min-h-screen bg-gray-100 py-12 flex flex-col items-center">
 
-    <div class="container max-w-4xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
-        <div class="bg-custom p-6 flex items-center">
-            <!-- Back Arrow -->
-            <a href="../landing_page/index.html" class="back-arrow mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-deep-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
+    <div class="container max-w-4xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden mb-8">
+        <div class="bg-custom p-6 flex items-center justify-between">
+            <a href="javascript:history.back()" class="text-white text-2xl font-bold">
+                &lt; <!-- Back Arrow Icon -->
             </a>
-            <!-- Page Title -->
-            <h2 class="text-3xl font-bold text-center text-white flex-grow">Create New Job Opening</h2>
+            <h2 class="text-3xl font-bold text-center text-white flex-grow">Create Social Post</h2>
+            <div class="w-10"></div> <!-- Placeholder for spacing -->
         </div>
 
-        <form id="jobOpeningForm" class="p-8 space-y-6">
+        <form id="social-form" class="p-8 space-y-6">
+            <!-- Description -->
             <div class="form-group">
-                <label for="title" class="block text-custom font-semibold mb-2">Job Title</label>
-                <input type="text" id="title" name="title" placeholder="Enter job title"
-                    class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
+                <label for="description" class="block text-custom font-semibold mb-2">What's on your mind?</label>
+                <textarea class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300" id="caption" rows="4" placeholder="Write something..."></textarea>
             </div>
 
+            <!-- Image Upload with Preview -->
             <div class="form-group">
-                <label for="location" class="block text-custom font-semibold mb-2">Job Location</label>
-                <input type="text" id="location" name="location" placeholder="Enter job location"
-                    class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
+                <label for="image-upload" class="block text-custom font-semibold mb-2">Upload Image</label>
+                <div id="dropZone" class="file-drop-zone flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-transparent hover:bg-gray-100">
+                    <svg class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                    </svg>
+                    <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                    <p class="text-xs text-gray-500">PNG or JPG (MAX. 800x400px)</p>
+                </div>
+                <input id="image-upload" class="hidden" type="file" accept="image/*">
+                <p id="image-preview-name" class="mt-2 text-sm text-gray-600">No file chosen</p>
             </div>
 
+            <!-- Post Button -->
             <div class="form-group">
-                <label for="description" class="block text-custom font-semibold mb-2">Job Description</label>
-                <textarea id="description" name="description" rows="4" placeholder="Enter job description"
-                    class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="domain" class="block text-custom font-semibold mb-2">Job Domain</label>
-                <input type="text" id="domain" name="domain" placeholder="Enter job domain (e.g., IT, Marketing)"
-                    class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
-            </div>
-
-            <div class="form-group">
-                <label for="skills" class="block text-custom font-semibold mb-2">Required Skills</label>
-                <input type="text" id="skills" name="skills"
-                    placeholder="Enter required skills (e.g., Java, Python, Sales)"
-                    class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
-            </div>
-
-            <div class="form-group">
-                <label for="salary" class="block text-custom font-semibold mb-2">Salary</label>
-                <input type="text" id="salary" name="salary" placeholder="Enter salary range (e.g., $60,000 - $80,000)"
-                    class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
-            </div>
-
-            <div class="form-group">
-                <label for="job-mode" class="block text-custom font-semibold mb-2">Job Mode</label>
-                <select id="job-mode" name="job-mode"
-                    class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
-                    <option>Select mode</option>
-                    <option>Online</option>
-                    <option>Offline</option>
-                    <option>Hybrid</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="email" class="block text-custom font-semibold mb-2">Contact Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter contact email"
-                    class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
-            </div>
-
-            <div class="form-group">
-                <label for="phone" class="block text-custom font-semibold mb-2">Contact Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="Enter contact phone number"
-                    class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
-            </div>
-
-            <div class="form-group">
-                <button type="submit"
-                    class="w-full p-4 bg-custom text-white font-bold rounded-lg transition duration-300 hover:shadow-lg">Post
-                    Job</button>
+                <button type="submit" class="w-full p-4 bg-custom text-white font-bold rounded-lg hover:bg-custom-dark transition duration-300 hover:shadow-lg">Post</button>
             </div>
         </form>
+    </div>
+
+    <!-- Display Posts Section -->
+    <div id="posts-section" class="container max-w-4xl mx-auto bg-white shadow-xl rounded-lg p-6 space-y-8">
+        <h2 class="text-2xl font-bold text-center">Recent Posts</h2>
+
+        <!-- Demo Photo Post -->
+        <div class="post bg-gray-100 p-4 rounded-lg shadow-md">
+            <p class="text-gray-800 mb-2">Had a great day hiking in the mountains! #NatureLover</p>
+            <img src="https://via.placeholder.com/800x400" alt="Demo Post Image" class="w-full h-auto rounded-lg mb-4">
+            <div class="flex justify-between">
+                <button class="react-button flex items-center bg-blue-500 text-white py-2 px-4 rounded">
+                    👍 <!-- Thumbs Up Icon -->
+                    <span class="ml-2">React</span>
+                </button>
+                <button class="comment-button flex items-center bg-gray-300 text-gray-800 py-2 px-4 rounded">
+                    💬 <!-- Comment Icon -->
+                    <span class="ml-2">Comment</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Demo Video Post -->
+        <div class="post bg-gray-100 p-4 rounded-lg shadow-md">
+            <p class="text-gray-800 mb-2">Check out this amazing sunset I captured! 🌅</p>
+            <video controls class="w-full h-auto rounded-lg mb-4">
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="flex justify-between">
+                <button class="react-button flex items-center bg-blue-500 text-white py-2 px-4 rounded">
+                    👍 <!-- Thumbs Up Icon -->
+                    <span class="ml-2">React</span>
+                </button>
+                <button class="comment-button flex items-center bg-gray-300 text-gray-800 py-2 px-4 rounded">
+                    💬 <!-- Comment Icon -->
+                    <span class="ml-2">Comment</span>
+                </button>
+            </div>
+        </div>
     </div>
 
 </body>
