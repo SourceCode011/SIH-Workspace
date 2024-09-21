@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="script.js" defer></script>
+</head>
+
+<body class="bg-gray-100">
+    <nav class="bg-primary nav-shadow fixed top-0 left-0 right-0 h-16 flex items-center justify-between px-6 z-10">
+        <div class="flex items-center">
+            <svg class="h-8 w-8 text-light mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+            <h1 class="text-xl font-bold text-light">AlumniHub</h1>
+        </div>
+        <button class="bg-accent text-light px-4 py-2 rounded-full hover:bg-opacity-90 transition duration-300">Sign
+            out</button>
+    </nav>
+
+    <div class="flex mt-16">
+        <!-- Sidebar -->
+        <aside class="bg-secondary text-light w-64 fixed left-0 h-full overflow-y-auto">
+            <div class="p-6 border-b border-gray-700">
+                <h2 class="text-lg font-semibold">User name</h2>
+                <p class="text-sm text-muted">@user_id</p>
+            </div>
+            <nav class="mt-6">
+                <a href="#" class="sidebar-link block py-3 px-6 hover:bg-hover">
+                    <svg class="inline-block w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
+                        </path>
+                    </svg>
+                    View applications
+                </a>
+                <a href="#" class="sidebar-link block py-3 px-6 hover:bg-hover">
+                    <svg class="inline-block w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                        </path>
+                    </svg>
+                    Update university details
+                </a>
+                <a href="#" class="sidebar-link block py-3 px-6 hover:bg-hover">
+                    <svg class="inline-block w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                        </path>
+                    </svg>
+                    Donation portal
+                </a>
+                <a href="#" class="sidebar-link block py-3 px-6 hover:bg-hover">
+                    <svg class="inline-block w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    Create New Post
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="ml-64 scrollable-content w-full">
+            <div class="p-6">
+                <div class="bg-banner h-80 w-full mb-4 rounded-lg shadow-md">
+                    <!-- Placeholder for banner image -->
+                    <div class="h-full flex items-center justify-center text-primary">&lt;banner img&gt;</div>
+                </div>
+                <div class="bg-white shadow-md p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold text-primary">University Name</h2>
+                    <p class="text-muted mt-2">Description ......</p>
+                    <div class="mt-4">
+                        <p>More fields to display if required ...</p>
+                        <!-- Add more content here to test scrolling -->
+                        <div class="mt-4">
+                            <h3 class="text-xl font-semibold text-primary">Additional Information</h3>
+                            <p class="mt-2 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                                do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p class="mt-2 text-gray-600">Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                                sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <p class="mt-2 text-gray-600">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+                                veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
