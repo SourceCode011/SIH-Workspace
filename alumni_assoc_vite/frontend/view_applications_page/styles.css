@@ -1,0 +1,133 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #a2e0e1 100%);
+}
+
+.scrollable-content {
+  height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+
+.bg-primary {
+  background-color: #2c7772;
+}
+
+.bg-secondary {
+  background-color: #1e5954;
+}
+
+.bg-accent {
+  background-color: #ff6b6b;
+}
+
+.bg-hover {
+  background-color: #a2e0e1;
+}
+
+.bg-banner {
+  background-color: #a2e0e1;
+  object-fit: cover;
+}
+
+.text-light {
+  color: #f9fafb;
+}
+
+.text-muted {
+  color: #a2e0e1;
+}
+
+.text-primary {
+  color: #2c7772;
+}
+
+.sidebar-link {
+  transition: all 0.3s ease;
+}
+
+.sidebar-link:hover {
+  background-color: #a2e0e1;
+  color: #2c7772;
+  transform: translateX(5px);
+}
+
+.nav-shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+button:hover {
+  background-color: #cc0000; /* Dark red */
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8); /* White shadow */
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.md\:grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.lg\:grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Back Arrow Styling */
+.back-arrow {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.back-arrow svg {
+  width: 30px;
+  height: 30px;
+  color: #ffffff; /* White color */
+  transition: color 0.3s ease;
+}
+
+.back-arrow:hover svg {
+  color: #004b23; /* Darker green on hover */
+}
+
+/* Navbar Styling for Mobile Responsiveness */
+nav {
+  min-width: 320px;
+  max-width: 100%;
+}
+
+nav h1 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#sign-out-btn {
+  min-width: 80px;
+  max-width: 150px;
+  text-align: center;
+}
+
+/* Modal Styling */
+#image-modal {
+  display: none;
+}
+
+#image-modal.active {
+  display: flex;
+}
+
+#image-modal .relative {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+#close-modal {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+#close-modal:hover {
+  color: #ff0000; /* Red color on hover */
+}
