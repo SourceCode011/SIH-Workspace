@@ -1,0 +1,67 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f7fafc;
+}
+
+.bg-custom {
+    background-color: #2c7772;
+}
+
+.bg-custom-dark {
+    background-color: #215653;
+}
+
+.text-custom {
+    color: #2c7772;
+}
+
+.form-input {
+    border: 2px solid #2c7772;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #215653;
+    outline: none;
+    box-shadow: 0 0 10px 2px rgba(33, 86, 83, 0.5);
+}
+
+.btn-donate {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #2c7772;
+    color: white;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn-donate:hover {
+    background-color: #215653;
+}
+
+h1, h2, h3, h4, p {
+    color: #333;
+}
+
+
+  /* Back Arrow Styling */
+  .back-arrow {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .back-arrow svg {
+    width: 30px;
+    height: 30px;
+    color: #ffffff; /* White color */
+    transition: color 0.3s ease;
+  }
+  
+  .back-arrow:hover svg {
+    color: #004b23; /* Darker green on hover */
+  }
+  
