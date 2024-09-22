@@ -29,12 +29,13 @@ authService.getCurrentUser(async (currentUser) => {
   }
 
   // Click to upload
-  document.getElementById("image-upload").addEventListener("change", function() {
-    const file = this.files[0];
-    if (file) {
-        document.getElementById("image-preview-name").textContent = file.name;
-    }
-});
+  dropZone.addEventListener("click", function (e) {
+    eventImage.click();
+  });
+
+  eventImage.addEventListener("change", function (e) {
+    handleFiles(this.files);
+  });
 
   // Drag and drop functionality
   dropZone.addEventListener("dragover", function (e) {

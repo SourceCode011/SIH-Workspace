@@ -1,125 +1,70 @@
-/* General Styles */
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #F3F4F6; /* Light gray background */
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #a2e0e1 100%);
 }
 
-/* Container Styles */
 .container {
-  background-color: #FFFFFF; /* White background for containers */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for containers */
-  border-radius: 12px; /* Smooth rounded corners */
-  margin-bottom: 24px; /* Space between containers */
+  animation: fadeIn 1s ease-in-out;
 }
 
-/* Header Section */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-input,
+textarea,
+select {
+  border: 2px solid #2c7772;
+  background: transparent;
+}
+
+.form-input:focus,
+textarea:focus,
+select:focus,
+.form-input:hover,
+textarea:hover,
+select:hover {
+  outline: none;
+  box-shadow: 0 0 10px 2px rgba(89, 175, 174, 0.8);
+}
+
 .bg-custom {
-  background-color: #2c7772; /* Profile Tab Bar Color (light blue) */
-  padding: 16px;
+  background-color: #2c7772;
 }
 
-/* Centered Title in Header */
-h2 {
-  font-weight: 700;
-  color: #FFFFFF; /* White text inside header */
-  text-align: center;
+.bg-custom-dark {
+  background-color: #1e3a8a;
 }
 
-/* Back Button */
+.text-custom {
+  color: #2c7772;
+}
+
+.form-group button:hover {
+  box-shadow: 0 0 10px rgba(89, 175, 174, 0.8);
+}
+
+/* Back Arrow Styling */
 .back-arrow {
-  font-size: 2rem; /* Large font size for the arrow */
-  color: #FFFFFF; /* White for the arrow */
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 
-/* Form Styles */
-.form-group {
-  margin-bottom: 16px;
+.back-arrow svg {
+  width: 30px;
+  height: 30px;
+  color: #ffffff; /* White color */
+  transition: color 0.3s ease;
 }
 
-.form-input {
-  background-color: #FFFFFF;
-  border: 1px solid #808080; /* Gray border */
-  color: #1c3988; /* Dark blue text */
-  border-radius: 8px;
-  padding: 12px;
-  width: 100%;
-  font-family: 'Poppins', sans-serif;
-  transition: border 0.3s ease, box-shadow 0.3s ease;
+.back-arrow:hover svg {
+  color: #004b23; /* Darker green on hover */
 }
-
-.form-input:focus {
-  border-color: #00a7db; /* Light blue on focus */
-  box-shadow: 0 0 0 3px rgba(0, 167, 219, 0.1); /* Light blue shadow on focus */
-}
-
-/* Image Upload Area */
-.file-drop-zone {
-  border: 2px dashed #808080; /* Gray dashed border */
-  transition: background-color 0.3s ease;
-}
-
-.file-drop-zone:hover {
-  background-color: #F0F4F8; /* Light gray hover effect */
-}
-
-.text-gray-500 {
-  color: #808080; /* Gray text */
-}
-
-#image-preview-name {
-  color: #1c3988; /* Dark Blue for image preview name */
-}
-
-/* Post Button */
-button[type="submit"] {
-  background-color: #00a7db; /* Profile Tab Bar Color */
-  color: #FFFFFF;
-  font-weight: 700;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-button[type="submit"]:hover {
-  background-color: #008cba; /* Darker shade of blue on hover */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow on hover */
-}
-
-/* Posts Section */
-#posts-section {
-  background-color: #FFFFFF; /* White background for posts */
-  padding: 24px;
-}
-
-.post {
-  background-color: #F9FAFB; /* Light gray for post background */
-  border: 1px solid #E5E7EB; /* Subtle border for posts */
-  padding: 16px;
-  border-radius: 8px; /* Rounded corners for posts */
-}
-
-.post p {
-  color: #1c3988; /* Dark blue for post text */
-  margin-bottom: 12px;
-}
-
-.post img,
-.post video {
-  border-radius: 8px; /* Rounded corners for images and videos */
-  max-width: 100%; /* Ensure media is responsive */
-}
-
-/* Center the title in posts section */
-.text-center {
-  color: #1c3988; /* Dark blue text */
-  text-align: center;
-  margin-bottom: 24px;
-}
-.react-button:hover {
-  background-color: #005f7f; /* Darker blue on hover */
-}
-
-.comment-button:hover {
-  background-color: #d1d5db; /* Darker gray on hover */
-}
-

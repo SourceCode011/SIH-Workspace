@@ -124,14 +124,4 @@ authService.getCurrentUser(async (currentUser) => {
       alert("Error creating job post.");
     }
   });
-  // Get the back button element
-  const backButton = document.querySelector(".back-arrow");
-
-  // Add event listener to the back button
-  if (backButton) {
-      backButton.addEventListener("click", function (event) {
-          event.preventDefault(); // Prevent default anchor behavior
-          window.history.back();   // Navigate back to the previous page
-      });
-  }
 });

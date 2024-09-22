@@ -8,7 +8,7 @@
 /* Styling for body and background */
 body {
   font-family: Arial, sans-serif;
-  background-image: url("../main_form/bg.jpg");
+  background-image: url("./bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
