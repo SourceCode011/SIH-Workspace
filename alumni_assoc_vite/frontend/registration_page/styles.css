@@ -114,26 +114,6 @@ h2 {
   text-decoration: none;
 }
 
-/* Back Arrow Styling */
-.back-arrow {
-  display: inline-flex;
-  align-items: center;
-  color: #ffffff; /* White color */
-  text-decoration: none;
-  margin-bottom: 1em;
-  transition: color 0.3s ease;
-}
-
-.icon-back-arrow {
-  width: 28px;
-  height: 28px;
-}
-
-.back-arrow:hover {
-  color: #004b23; /* Darker green on hover */
-}
-
-
 
 /* Responsive styling */
 @media (max-width: 768px) {

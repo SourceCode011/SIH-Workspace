@@ -165,23 +165,4 @@ a:hover {
   }
 }
 
-/* Back Arrow Styling */
-.back-arrow {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1em;
-  color: #ffffff; /* White color */
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.back-arrow svg {
-  width: 28px;
-  height: 28px;
-}
-
-.back-arrow:hover {
-  color: #004b23; /* Darker green on hover */
-}
-
 
