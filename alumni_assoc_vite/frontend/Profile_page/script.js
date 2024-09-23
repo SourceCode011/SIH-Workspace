@@ -429,3 +429,77 @@ function displayPosts() {
 
 
 //About the post
+const bioInput = document.getElementById('bio-input');
+const aboutTextarea = document.getElementById('about-textarea');
+const editProfileBtn = document.getElementById('edit-profile-btn');
+const editButtons = document.getElementById('edit-buttons');
+let previousBio = "";
+
+// Sync bio from input field to textarea
+function syncBio() {
+  aboutTextarea.value = bioInput.value; // Update textarea with input value
+}
+
+// Event listener to sync changes in the input field to the textarea
+bioInput.addEventListener('input', syncBio);
+
+// Event listener to sync changes in the textarea to the input field
+aboutTextarea.addEventListener('input', () => {
+  bioInput.value = aboutTextarea.value; // Update input field with textarea value
+});
+
+// Click event for "Edit Your Profile" button
+editProfileBtn.addEventListener('click', () => {
+  previousBio = aboutTextarea.value; // Save the current bio
+  bioInput.readOnly = false; // Make input editable
+  aboutTextarea.readOnly = false; // Make textarea editable
+  editButtons.style.display = 'block'; // Show save and cancel buttons
+});
+
+// Click event for "Save" button
+document.getElementById('save-btn').addEventListener('click', () => {
+  bioInput.readOnly = true; // Make input read-only again
+  aboutTextarea.readOnly = true; // Make textarea read-only again
+  editButtons.style.display = 'none'; // Hide save and cancel buttons
+});
+
+// Click event for "Cancel" button
+document.getElementById('cancel-btn').addEventListener('click', () => {
+  bioInput.value = previousBio; // Revert to previous bio
+  aboutTextarea.value = previousBio; // Revert to previous bio
+  bioInput.readOnly = true; // Make input read-only again
+  aboutTextarea.readOnly = true; // Make textarea read-only again
+  editButtons.style.display = 'none'; // Hide save and cancel buttons
+});
+
+
+
+//socialmedia
+document.getElementById('save-social-media').addEventListener('click', function() {
+    const linkedin = document.getElementById('linkedin').value;
+    const facebook = document.getElementById('facebook').value;
+    const instagram = document.getElementById('instagram').value;
+    const github = document.getElementById('github').value;
+
+    // Save links to localStorage
+    localStorage.setItem('linkedin', linkedin);
+    localStorage.setItem('facebook', facebook);
+    localStorage.setItem('instagram', instagram);
+    localStorage.setItem('github', github);
+
+    alert('Social media links saved successfully!');
+});
+
+// Function to load saved links on page load
+function loadSocialMediaLinks() {
+    document.getElementById('linkedin').value = localStorage.getItem('linkedin') || '';
+    document.getElementById('facebook').value = localStorage.getItem('facebook') || '';
+    document.getElementById('instagram').value = localStorage.getItem('instagram') || '';
+    document.getElementById('github').value = localStorage.getItem('github') || '';
+}
+
+// Load links when the page is loaded
+window.onload = loadSocialMediaLinks;
+
+
+//about page 

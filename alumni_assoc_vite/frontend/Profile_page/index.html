@@ -7,7 +7,9 @@
     <title>Profile Page</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 
 <body class="bg-gray-100 font-sans">
@@ -320,25 +322,362 @@
         <!-- About Section -->
         <div id="about" class="hidden section">
             <!-- About Page Container -->
-            <div id="aboutPage" class="p-6 space-y-6 bg-white rounded-md shadow-md border border-gray-300">
+            <div id="aboutmePage"
+                class="p-6 mt-4 space-y-6 rounded-md shadow-lg relative overflow-hidden bg-gradient-to-r from-gray-700 to-gray-500 border border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-white">About</h2>
+                    <button id="edit-about-btn" class="text-white hover:text-gray-300">
+                        <i class="ri-pencil-line text-2xl"></i>
+                    </button>
 
-                
-                
+                    <!-- Edit About Section -->
+                    <div id="edit-about-section"
+                        class="hidden fixed inset-0 bg-gray-800 bg-opacity-70 flex justify-center items-center z-50">
+                        <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 md:w-2/3">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-semibold">Edit About</h3>
+                                <ion-icon name="close-outline" class="cursor-pointer" id="close-edit-about"></ion-icon>
+                            </div>
+                            <div class="mb-4">
+                                <input type="text" id="edit-about-input" class="w-full p-2 border rounded-lg"
+                                    placeholder="Tell something about You">
+                            </div>
+                            <div class="flex justify-end gap-4">
+                                <button id="save-about"
+                                    class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Save</button>
+                                <button id="cancel-edit-about"
+                                    class="bg-gray-300 px-4 py-2 rounded-md hover:bg-gray-400">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div id="about-content" class="text-gray-200 min-h-[100px] p-3 rounded-md bg-gray-50 bg-opacity-20">
+                    <input type="text" placeholder="Tell something about you"
+                        class="w-full bg-transparent text-gray-200 focus:outline-none" readonly>
+                </div>
             </div>
 
+            <!-- education section -->
+            <div id="educationPage"
+                class="p-6 mt-4 space-y-6 rounded-md shadow-lg relative bg-gray-200 border-b-4 border-gray-300 overflow-hidden ">
+                <section class="education-section bg-gray-200 rounded-lg p-6 mb-8">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-2xl font-bold text-gray-800">Education</h2>
+                        <button id="add-education-btn" class="text-blue-600 hover:text-blue-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4v16m8-8H4" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div id="education-school-name"
+                        class="education-content text-gray-700 min-h-[100px] p-3 rounded-md bg-gray-50">
+                        <input type="text" id="school-display" placeholder="School Name"
+                            class="w-full bg-transparent text-gray-700 focus:outline-none mt-2" readonly>
+                    </div>
+
+                    <div id="education-content"
+                        class="education-content text-gray-700 mt-2 min-h-[100px] p-3 rounded-md bg-gray-50">
+                        <input type="text" placeholder="Add your education details"
+                            class="w-full bg-transparent text-gray-400 italic focus:outline-none" readonly>
+
+                    </div>
+                </section>
+
+                <!-- Add/Edit Education Modal -->
+                <div id="edit-education-modal"
+                    class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+                    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+                        <div class="mt-3 text-center">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">Add/Edit Education</h3>
+                            <div class="mt-2 px-7 py-3">
+                                <input type="text" id="school-name"
+                                    class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+                                    placeholder="Institution Name">
+                                <input type="text" id="degree"
+                                    class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none mt-2"
+                                    placeholder="Degree">
+                                <input type="text" id="field-of-study"
+                                    class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none mt-2"
+                                    placeholder="Field of Study">
+                                <input type="text" id="start-year"
+                                    class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none mt-2"
+                                    placeholder="Start Year">
+                                <input type="text" id="end-year"
+                                    class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none mt-2"
+                                    placeholder="End Year">
+                            </div>
+                            <div class="items-center px-4 py-3">
+                                <button id="save-education"
+                                    class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                                    Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="skill"
+                class="p-6 mt-4 space-y-6 rounded-md shadow-lg relative bg-gray-200 border-b-4 border-gray-300 overflow-hidden">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-semibold mb-4">Skills</h3>
+                    <div class="flex items-center space-x-2">
+                        <button id="add-skill-btn"
+                            class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                            Add Skill
+                        </button>
+                    </div>
+                </div>
+                <div id="skills-list" class="space-y-2">
+                    <div id="skill-placeholder" class="text-gray-400 italic">Tell your skill to others</div>
+                    <!-- Skill items will be added here dynamically -->
+                </div>
+                <!-- Add Skill Modal -->
+                <div id="add-skill-modal"
+                    class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+                    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+                        <div class="flex justify-end">
+                            <ion-icon name="close-circle-outline" class="text-2xl text-gray-700 cursor-pointer"
+                                id="close-skill-modal"></ion-icon>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">Add a new skill</h3>
+                            <div class="mt-2 px-7 py-3">
+                                <input type="text" id="new-skill-input"
+                                    class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+                                    placeholder="Skill Name">
+                            </div>
+                            <div class="items-center px-4 py-3">
+                                <button id="save-skill-btn"
+                                    class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                                    Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                document.getElementById('add-skill-btn').addEventListener('click', function () {
+                    document.getElementById('add-skill-modal').classList.remove('hidden');
+                });
+
+                document.getElementById('save-skill-btn').addEventListener('click', function () {
+                    const skillInput = document.getElementById('new-skill-input');
+                    const skillName = skillInput.value.trim();
+                    if (skillName) {
+                        const skillList = document.getElementById('skills-list');
+                        const skillItem = document.createElement('div');
+                        skillItem.className = 'flex items-center justify-between bg-white p-2 rounded-md shadow-sm';
+                        skillItem.innerHTML = `<span class="text-gray-700">${skillName}</span>
+                                               <div class="flex items-center space-x-2">
+                                                   <ion-icon name="trash-bin-outline" class="text-gray-700 text-xl cursor-pointer delete-skill-icon"></ion-icon>
+                                               </div>`;
+                        skillList.appendChild(skillItem);
+                        skillInput.value = '';
+                        document.getElementById('skill-placeholder').style.display = 'none';
+                        document.getElementById('add-skill-modal').classList.add('hidden');
+                    }
+                });
+
+                document.addEventListener('click', function (event) {
+                    if (event.target.classList.contains('delete-skill-icon')) {
+                        const skillItem = event.target.closest('.flex.items-center.justify-between.bg-white.p-2.rounded-md.shadow-sm');
+                        skillItem.remove();
+                        if (document.getElementById('skills-list').children.length === 1) {
+                            document.getElementById('skill-placeholder').style.display = 'block';
+                        }
+                    }
+                });
+
+                document.getElementById('close-skill-modal').addEventListener('click', function () {
+                    document.getElementById('add-skill-modal').classList.add('hidden');
+                });
+            </script>
+
+
+            <div id="socialPage"
+                class="p-6 mt-4 space-y-6 rounded-md shadow-lg relative overflow-hidden bg-gradient-to-br from-gray-800 via-blue-800 to-indigo-900">
+                <!-- Three.js canvas for 3D background -->
+                <canvas id="threejs-background" class="absolute top-0 left-0 w-full h-full opacity-20"></canvas>
+
+                <div id="social-media-section"
+                    class="relative z-10 bg-white bg-opacity-10 backdrop-filter backdrop-blur-sm p-6 rounded-lg shadow-xl border border-white border-opacity-20">
+                    <h3 class="text-2xl font-bold mb-4 text-white">Connect With Me</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="social-input-group">
+                            <label for="linkedin" class="block text-sm font-medium text-gray-200 mb-1">
+                                <i class="fab fa-linkedin text-blue-400 mr-2"></i>LinkedIn:
+                            </label>
+                            <input type="url" id="linkedin"
+                                class="w-full p-2 bg-white bg-opacity-20 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 transition text-white"
+                                placeholder="https://linkedin.com/in/yourprofile">
+                        </div>
+                        <div class="social-input-group">
+                            <label for="facebook" class="block text-sm font-medium text-gray-200 mb-1">
+                                <i class="fab fa-facebook text-blue-400 mr-2"></i>Facebook:
+                            </label>
+                            <input type="url" id="facebook"
+                                class="w-full p-2 bg-white bg-opacity-20 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 transition text-white"
+                                placeholder="https://facebook.com/yourprofile">
+                        </div>
+                        <div class="social-input-group">
+                            <label for="instagram"
+                                class="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                                <i class="fab fa-instagram text-pink-400 mr-2"></i>Instagram:
+                            </label>
+                            <input type="url" id="instagram"
+                                class="w-full p-2 bg-white bg-opacity-20 border border-gray-300 rounded-md focus:ring-2 focus:ring-pink-500 transition text-white"
+                                placeholder="https://instagram.com/yourprofile">
+                        </div>
+                        <div class="social-input-group">
+                            <label for="github" class="block text-sm font-medium text-gray-200 mb-1">
+                                <i class="fab fa-github text-gray-300 mr-2"></i>GitHub:
+                            </label>
+                            <input type="url" id="github"
+                                class="w-full p-2 bg-white bg-opacity-20 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-400 transition text-white"
+                                placeholder="https://github.com/yourprofile">
+                        </div>
+                    </div>
+                    <button id="save-social-media"
+                        class="mt-6 px-6 py-2 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-md hover:from-purple-600 hover:to-indigo-700 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                        Save Links
+                    </button>
+                </div>
+            </div>
         </div>
 
 
+        <div id="photos-videos" class="hidden section">
+            <h3 class="text-lg font-semibold mb-4">Photos & Videos</h3>
+            <div class="mb-4">
+                <span class="text-sm text-gray-600">Do you want to upload any photos or videos?</span>
+                <button id="upload-button" class="hidden md:inline-block bg-blue-500 text-white px-4 py-2 rounded-md">Upload</button>
+                <i id="upload-icon" class="ri-image-add-line md:hidden text-3xl text-blue-500"></i>
+            </div>
+            <input type="file" id="upload-photo-video" class="hidden" accept="image/*,video/*" multiple>
+            <div id="media-gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Media items will be dynamically added here -->
+            </div>
+            <div id="preview-section" class="fixed inset-0 bg-black bg-opacity-75 hidden flex justify-center items-center z-50">
+                <div class="relative">
+                    <button id="close-preview" class="absolute top-2 right-2 text-white text-3xl">
+                        <i class="ri-fullscreen-exit-line"></i>
+                    </button>
+                    <div id="preview-content" class="flex flex-col items-center">
+                        <!-- Preview content will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+            <script>
+                const uploadInput = document.getElementById('upload-photo-video');
+                const uploadButton = document.getElementById('upload-button');
+                const uploadIcon = document.getElementById('upload-icon');
+                const mediaGallery = document.getElementById('media-gallery');
+                const previewSection = document.getElementById('preview-section');
+                const previewContent = document.getElementById('preview-content');
+                const closePreview = document.getElementById('close-preview');
+
+                uploadButton.addEventListener('click', () => uploadInput.click());
+                uploadIcon.addEventListener('click', () => uploadInput.click());
+
+                uploadInput.addEventListener('change', (event) => {
+                    const files = event.target.files;
+                    for (const file of files) {
+                        const mediaItem = document.createElement('div');
+                        mediaItem.classList.add('relative', 'group');
+
+                        const mediaElement = document.createElement(file.type.startsWith('image/') ? 'img' : 'video');
+                        mediaElement.src = URL.createObjectURL(file);
+                        mediaElement.classList.add('w-full', 'h-auto', 'rounded-md', 'shadow-md');
+                        if (file.type.startsWith('video/')) {
+                            mediaElement.controls = true;
+                        }
+
+                        const overlay = document.createElement('div');
+                        overlay.classList.add('absolute', 'inset-0', 'bg-black', 'bg-opacity-50', 'flex', 'justify-center', 'items-center', 'opacity-0', 'group-hover:opacity-100', 'transition', 'duration-300');
+
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Delete';
+                        deleteButton.classList.add('bg-red-500', 'text-white', 'px-4', 'py-2', 'rounded-md', 'mr-2');
+                        deleteButton.addEventListener('click', () => {
+                            mediaGallery.removeChild(mediaItem);
+                        });
+
+                        const downloadButton = document.createElement('a');
+                        downloadButton.textContent = 'Download';
+                        downloadButton.href = mediaElement.src;
+                        downloadButton.download = file.name;
+                        downloadButton.classList.add('bg-blue-500', 'text-white', 'px-4', 'py-2', 'rounded-md');
+
+                        const previewButton = document.createElement('button');
+                        previewButton.innerHTML = '<ion-icon name="scan-outline"></ion-icon>';
+                        previewButton.classList.add('bg-green-500', 'text-white', 'px-4', 'py-2', 'rounded-md', 'mr-2');
+                        previewButton.addEventListener('click', () => {
+                            previewContent.innerHTML = '';
+                            const previewMediaElement = mediaElement.cloneNode(true);
+                            previewMediaElement.classList.add('w-full', 'h-auto', 'rounded-md', 'shadow-md');
+                            previewMediaElement.style.maxWidth = '80%';
+                            previewMediaElement.style.maxHeight = '80%';
+                            previewContent.appendChild(previewMediaElement);
+
+                            if (file.type.startsWith('image/')) {
+                                const zoomInButton = document.createElement('button');
+                                zoomInButton.innerHTML = '<ion-icon name="add-circle-outline"></ion-icon>';
+                                zoomInButton.classList.add('bg-blue-500', 'text-white', 'px-4', 'py-2', 'rounded-md', 'mr-2');
+                                zoomInButton.addEventListener('click', () => {
+                                    previewMediaElement.style.transform = 'scale(1.5)';
+                                });
+
+                                const zoomOutButton = document.createElement('button');
+                                zoomOutButton.innerHTML = '<ion-icon name="remove-circle-outline"></ion-icon>';
+                                zoomOutButton.classList.add('bg-blue-500', 'text-white', 'px-4', 'py-2', 'rounded-md', 'mr-2');
+                                zoomOutButton.addEventListener('click', () => {
+                                    previewMediaElement.style.transform = 'scale(1)';
+                                });
+
+                                previewContent.appendChild(zoomInButton);
+                                previewContent.appendChild(zoomOutButton);
+                            } else if (file.type.startsWith('video/')) {
+                                previewMediaElement.controls = true;
+                                previewMediaElement.volume = 0; // Disable volume control
+                            }
+
+                            previewSection.classList.remove('hidden');
+                        });
+
+                        overlay.appendChild(deleteButton);
+                        overlay.appendChild(downloadButton);
+                        overlay.appendChild(previewButton);
+                        mediaItem.appendChild(mediaElement);
+                        mediaItem.appendChild(overlay);
+                        mediaGallery.appendChild(mediaItem);
+                    }
+                });
+
+                closePreview.addEventListener('click', () => {
+                    const videoElement = previewContent.querySelector('video');
+                    if (videoElement) {
+                        videoElement.pause();
+                    }
+                    previewSection.classList.add('hidden');
+                });
+            </script>
+        </div>
+        </div>
+
+        
 
     </div>
 
     <!-- Photos & Videos Section -->
-    <div id="photos-videos" class="hidden section">
-        <h3 class="text-lg font-semibold mb-4">Photos & Videos</h3>
-        <p>No photos or videos uploaded yet.</p>
-    </div>
 
-    </div>
+
 
 
 
@@ -353,6 +692,126 @@
     <script src="script.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>//social media
+        // Three.js setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('threejs-background'), alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        // Create a more visible, professional 3D object
+        const geometry = new THREE.TorusKnotGeometry(3, 1, 100, 16);
+        const material = new THREE.MeshPhongMaterial({
+            color: 0x4a90e2,
+            shininess: 100,
+            specular: 0xffffff,
+            emissive: 0x0c2d6b,
+            emissiveIntensity: 0.5
+        });
+        const torusKnot = new THREE.Mesh(geometry, material);
+        scene.add(torusKnot);
+
+        // Add lights
+        const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+        scene.add(ambientLight);
+
+        const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+        pointLight.position.set(10, 10, 10);
+        scene.add(pointLight);
+
+        camera.position.z = 10;
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            torusKnot.rotation.x += 0.01;
+            torusKnot.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+
+    <script>//about section
+        document.getElementById('edit-about-btn').addEventListener('click', function () {
+            document.getElementById('edit-about-section').classList.remove('hidden');
+        });
+
+        document.getElementById('close-edit-about').addEventListener('click', function () {
+            document.getElementById('edit-about-section').classList.add('hidden');
+        });
+
+        document.getElementById('save-about').addEventListener('click', function () {
+            const newAbout = document.getElementById('edit-about-input').value.trim();
+            if (newAbout) {
+                document.getElementById('about-content').innerHTML = `<p>${newAbout}</p>`;
+            }
+            document.getElementById('edit-about-section').classList.add('hidden');
+        });
+
+        document.getElementById('cancel-edit-about').addEventListener('click', function () {
+            document.getElementById('edit-about-section').classList.add('hidden');
+        });
+    </script>
+
+    <script>//education section
+        const addEducationBtn = document.getElementById('add-education-btn');
+        const educationContent = document.getElementById('education-content');
+        const editEducationModal = document.getElementById('edit-education-modal');
+        const schoolNameInput = document.getElementById('school-name');
+        const degreeInput = document.getElementById('degree');
+        const fieldOfStudyInput = document.getElementById('field-of-study');
+        const startYearInput = document.getElementById('start-year');
+        const endYearInput = document.getElementById('end-year');
+        const saveEducationBtn = document.getElementById('save-education');
+        const schoolDisplay = document.getElementById('school-display');
+
+        addEducationBtn.addEventListener('click', () => {
+            editEducationModal.classList.remove('hidden');
+            schoolNameInput.value = '';
+            degreeInput.value = '';
+            fieldOfStudyInput.value = '';
+            startYearInput.value = '';
+            endYearInput.value = '';
+        });
+
+        saveEducationBtn.addEventListener('click', () => {
+            const schoolName = schoolNameInput.value.trim();
+            const degree = degreeInput.value.trim();
+            const fieldOfStudy = fieldOfStudyInput.value.trim();
+            const startYear = startYearInput.value.trim();
+            const endYear = endYearInput.value.trim();
+
+            if (schoolName && degree && fieldOfStudy && startYear && endYear) {
+                const educationEntry = document.createElement('div');
+                educationEntry.classList.add('education-entry', 'mb-4', 'p-4', 'bg-gray-100', 'rounded-md');
+                educationEntry.innerHTML = `
+                <h4 class="text-lg font-semibold">${schoolName}</h4>
+                <p class="text-gray-600">${degree} in ${fieldOfStudy}</p>
+                <p class="text-gray-600">${startYear} - ${endYear}</p>
+            `;
+                educationContent.appendChild(educationEntry);
+                educationContent.classList.remove('text-gray-400', 'italic');
+                schoolDisplay.value = schoolName;
+            } else {
+                alert('Please fill in all fields');
+            }
+            editEducationModal.classList.add('hidden');
+        });
+
+        // Close modal when clicking outside
+        editEducationModal.addEventListener('click', (e) => {
+            if (e.target === editEducationModal) {
+                editEducationModal.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 
 </html>
