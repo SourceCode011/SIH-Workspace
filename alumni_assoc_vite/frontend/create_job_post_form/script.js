@@ -91,17 +91,17 @@ authService.getCurrentUser(async (currentUser) => {
 
       const jobPost = {
         contact_email: contactEmail,
-        contact_phone_no: contactPhoneNo,
+        contact_num: contactPhoneNo,
         description: description,
         domain: domain,
         job_id: jobId,
-        location: location,
-        title: title,
+        job_location: location,
+        job_title: title,
         post_id: postId,
-        required_skills: requiredSkills,
+        req_skills: requiredSkills,
         salary: salary,
         user_id: currentUser.uid,
-        mode: mode,
+        work_mode: mode,
       };
 
       await jobServicesDB.addJob(jobPost);
@@ -115,6 +115,7 @@ authService.getCurrentUser(async (currentUser) => {
         await userServicesDB.updateUser(currentUser.uid, user);
 
         alert("Job posted successfully.");
+        window.history.back();
       } else {
         console.error("User not found.");
         alert("User not found.");

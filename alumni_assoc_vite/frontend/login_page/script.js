@@ -29,7 +29,7 @@ async function validateLogin(event) {
         if (user && !user.is_complete) {
           window.location.href = "../user_details_form/index.html"; // Navigate to additional details form
         } else {
-          window.location.href = "../../index.html"; // Navigate to main page
+          window.location.href = "../social_post_page/index.html"; // Navigate to main page
         }
       } else {
         alert("Sign-in successful, but unable to fetch user details.");

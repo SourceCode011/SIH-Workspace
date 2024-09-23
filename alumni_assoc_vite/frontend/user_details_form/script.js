@@ -167,6 +167,7 @@ authService.getCurrentUser(async (currentUser) => {
 
         await userService.updateUser(currentUser.uid, user);
         alert("User details updated successfully.");
+        window.href = "../social_post_page/index.html";
       } catch (error) {
         console.error("Error updating user details:", error);
         alert("Failed to update user details. Please try again.");
