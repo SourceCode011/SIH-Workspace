@@ -198,6 +198,7 @@ authService.getCurrentUser(async (currentUser) => {
         // Update user in Firestore
         await userServicesDB.updateUser(currentUser.uid, user);
         alert("Event created successfully.");
+        window.history.back();
       } else {
         console.error("User not found.");
         alert("User not found.");

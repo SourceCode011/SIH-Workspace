@@ -13,7 +13,6 @@ authServices.getCurrentUser(async (user) => {
       // Fetch user details
       const userDetails = await userServicesDB.getUser(user.uid);
       console.log(userDetails);
-      
 
       // Populate sidebar with user details
       document.querySelector("h2").textContent =
@@ -70,3 +69,13 @@ function populateUniversityDetails(university) {
 
   mainContent.appendChild(detailsDiv);
 }
+
+// Sign out functionality
+document.getElementById("sign-out-btn").addEventListener("click", async () => {
+  try {
+    await authServices.signOut();
+    window.location.href = "../login_page/index.html";
+  } catch (error) {
+    console.error("Error signing out:", error);
+  }
+});
