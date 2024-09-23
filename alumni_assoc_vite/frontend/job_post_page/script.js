@@ -1,8 +1,10 @@
 import AuthServices from "../../firebase/services/auth/AuthServices.js";
 import UserServicesDB from "../../firebase/services/firestore_db/UserServicesDB.js";
+import JobServicesDB from "../../firebase/services/firestore_db/JobServicesDB.js";
 
 const authServices = new AuthServices();
 const userServicesDB = new UserServicesDB();
+const jobServicesDB = new JobServicesDB();
 
 // Sign out functionality
 document.getElementById("sign-out-btn").addEventListener("click", async () => {
@@ -96,4 +98,92 @@ const debouncedSearch = debounce(performSearch, 300);
 searchInput.addEventListener("input", (event) => {
   const searchTerm = event.target.value.trim();
   debouncedSearch(searchTerm);
+});
+
+// Fetch and display job posts
+const jobPostsContainer = document.getElementById("job-posts-container");
+
+const fetchAndDisplayJobPosts = async () => {
+  try {
+    const jobPosts = await jobServicesDB.getAllJobs();
+    for (const job of jobPosts) {
+      const jobElement = document.createElement("div");
+      jobElement.className =
+        "job-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300";
+
+      jobElement.innerHTML = `
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <h2 class="text-2xl font-bold text-gray-800 mb-2">${
+                job.job_title
+              }</h2>
+              <p class="text-lg text-gray-600 mb-2">${job.domain}</p>
+            </div>
+            <span class="bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded-full">${
+              job.work_mode
+            }</span>
+          </div>
+
+          <p class="text-gray-700 mb-4">${job.description}</p>
+
+          <div class="flex flex-wrap gap-2 mb-4">
+            ${job.req_skills
+              .split(",")
+              .map(
+                (skill) =>
+                  `<span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">${skill.trim()}</span>`
+              )
+              .join("")}
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="flex items-center">
+              <i class="fas fa-map-marker-alt text-gray-500 mr-2"></i>
+              <span class="text-gray-700">${job.job_location}</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-rupee-sign text-gray-500 mr-2"></i>
+              <span class="text-gray-700">${(job.salary / 100000).toFixed(
+                2
+              )} LPA</span>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-200 pt-4">
+            <div class="flex items-center mb-2">
+              <i class="fas fa-envelope text-gray-500 mr-2"></i>
+              <a href="mailto:${
+                job.contact_email
+              }" class="text-blue-600 hover:underline">${job.contact_email}</a>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-phone text-gray-500 mr-2"></i>
+              <a href="tel:${
+                job.contact_num
+              }" class="text-blue-600 hover:underline">${job.contact_num}</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 px-6 py-4">
+          <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 w-full">
+            Apply Now
+          </button>
+        </div>
+      `;
+
+      jobPostsContainer.appendChild(jobElement);
+    }
+  } catch (error) {
+    console.error("Error fetching job posts:", error);
+  }
+};
+
+fetchAndDisplayJobPosts();
+
+// Hamburger menu functionality
+document.getElementById("hamburger-menu").addEventListener("click", () => {
+  const leftSidebar = document.getElementById("left-sidebar");
+  leftSidebar.classList.toggle("hidden");
 });

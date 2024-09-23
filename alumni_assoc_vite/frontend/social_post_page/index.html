@@ -13,8 +13,11 @@
 </head>
 
 <body class="bg-gray-100 font-sans">
-    <nav class="bg-primary nav-shadow fixed top-0 left-0 right-0 h-16 flex items-center justify-between px-4 z-10">
+    <nav class="bg-primary nav-shadow fixed top-0 left-0 right-0 h-16 flex items-center justify-between px-4 z-20">
         <div class="flex items-center">
+            <button id="hamburger-menu" class="md:hidden text-light mr-4">
+                <i class="fas fa-bars"></i>
+            </button>
             <a href="javascript:history.back()" class="back-arrow mr-4 hover:text-gray-300 transition duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-light" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
@@ -30,9 +33,10 @@
         </button>
     </nav>
 
-    <div class="flex mt-16">
+    <div class="flex flex-col md:flex-row mt-16">
         <!-- Left Sidebar -->
-        <aside class="bg-secondary text-light w-64 fixed left-0 h-full overflow-y-auto">
+        <aside id="left-sidebar"
+            class="bg-secondary text-light w-full md:w-64 md:fixed md:left-0 md:h-full overflow-y-auto z-10">
             <div class="p-6 border-b border-gray-700 flex flex-col items-center">
                 <img src="default-profile-pic.jpg" alt="Profile Picture"
                     class="profile-pic w-24 h-24 rounded-full mb-4 border-2 border-light">
@@ -40,7 +44,8 @@
                 <p class="text-sm text-muted user-name">@username</p>
             </div>
             <nav class="mt-6">
-                <a href="./index.html" class="sidebar-link block py-3 px-6 hover:bg-hover transition duration-300">
+                <a href="../social_post_page/index.html"
+                    class="sidebar-link block py-3 px-6 hover:bg-hover transition duration-300">
                     <i class="fas fa-stream mr-3"></i>
                     Social Posts
                 </a>
@@ -78,21 +83,22 @@
         </aside>
 
         <!-- Main content -->
-        <main class="ml-64 w-full p-6">
-            <!-- Add your main content here -->
-            <h2 class="text-2xl font-bold mb-4">Recent Social Posts</h2>
-            <!-- Add more content as needed -->
+        <main class="w-full md:ml-64 lg:mr-64 p-6">
+            <h2 class="text-2xl font-bold mb-12">Recent Social Posts</h2>
+            <div id="social-posts-container" class="space-y-16">
+                <!-- Social posts will be dynamically inserted here -->
+            </div>
         </main>
 
         <!-- Floating Action Button -->
         <a href="../create_social_post_form/index.html"
-            class="create-btn fixed bottom-8 right-80 text-white rounded-full px-6 py-3 flex items-center shadow-lg hover:bg-opacity-90 transition duration-300 z-20">
+            class="create-btn fixed bottom-8 right-8 md:right-80 text-white rounded-full px-6 py-3 flex items-center shadow-lg hover:bg-opacity-90 transition duration-300 z-30">
             <i class="fas fa-plus mr-2"></i>
             <span class="font-semibold">Create</span>
         </a>
 
         <!-- Right Sidebar -->
-        <aside class="bg-secondary text-light w-64 fixed right-0 h-full overflow-y-auto">
+        <aside class="bg-secondary text-light w-full md:w-64 md:fixed md:right-0 md:h-full overflow-y-auto z-10">
             <div class="p-6 border-b border-gray-700 flex items-center">
                 <i class="fas fa-search mr-2"></i>
                 <h2 class="text-lg font-semibold">Search Users</h2>

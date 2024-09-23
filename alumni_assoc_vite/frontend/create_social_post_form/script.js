@@ -93,7 +93,7 @@ authService.getCurrentUser(async (currentUser) => {
       post_id: postId,
       type: "social",
       user_id: currentUser.uid,
-      created_at: new Date().toISOString(),
+      created_at: new Date(),
     };
 
     try {
@@ -101,7 +101,7 @@ authService.getCurrentUser(async (currentUser) => {
 
       const socialPost = {
         caption: captionValue,
-        img_url: imgUrl,
+        image_url: imgUrl,
         post_id: postId,
         social_post_id: socialPostId,
         user_id: currentUser.uid,
@@ -118,6 +118,7 @@ authService.getCurrentUser(async (currentUser) => {
         await userServicesDB.updateUser(currentUser.uid, user);
 
         alert("Social post created successfully.");
+        window.history.back();
       } else {
         console.error("User not found.");
         alert("User not found.");
