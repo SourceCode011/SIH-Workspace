@@ -132,15 +132,15 @@ const fetchAndDisplaySocialPosts = async () => {
         <!-- Post Image -->
         <img src="${socialPost.image_url}" alt="${
         socialPost.image_url
-      }" class="w-full h-64 object-cover">
+      }" class="w-full h-72 object-fill"> <!-- Increased height -->
         
         <!-- Post Caption -->
-        <div class="p-4">
+        <div class="p-6"> <!-- Added padding -->
           <p class="text-gray-800">${socialPost.caption}</p>
         </div>
         
         <!-- Post Actions -->
-        <div class="px-4 pb-4 flex justify-between items-center border-t border-gray-200 pt-3">
+        <div class="px-6 pb-6 flex justify-between items-center border-t border-gray-200 pt-3"> <!-- Added padding -->
           <div class="flex space-x-4">
             <button class="flex items-center space-x-2 text-gray-600">
               <i class="far fa-heart"></i>
