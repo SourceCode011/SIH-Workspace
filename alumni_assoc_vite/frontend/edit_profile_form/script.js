@@ -187,7 +187,7 @@ authService.getCurrentUser(async (currentUser) => {
           // Update user in Firestore
           const updatedUser = {
             user_id: currentUser.uid,
-            user_name: currentUser.displayName || null,
+            user_name: currentUser.user_name || null,
             email: currentUser.email,
             bio: bio || null,
             contact_num: contactNum || null,

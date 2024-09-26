@@ -1,7 +1,7 @@
 ---------later on all paths can be transfered to a .env file---------
 
 UNIVERSITY_POSTS_PATH = "/university/unv_posts";
-UNIVERSITY_LOGO_PATH = "/university/unv_logo";
+UNIVERSITY_LOGO_PATH = "/university/unv_banner";
 UNIVERSITY_DONATION_QR_PATH = "/university/donation_qr";
 PROFILE_PICS_PATH = "/profile_pics";
 SOCIALS_POSTS_PATH = "/posts/socials";

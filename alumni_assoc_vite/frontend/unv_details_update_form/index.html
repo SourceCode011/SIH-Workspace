@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>University details update</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <script type="module" src="./script.js"></script>
+    <script type="module" src="./script.js" defer></script>
 </head>
 
 <body class="bg-gray-100 min-h-screen flex items-center justify-center py-12">
@@ -17,7 +18,8 @@
         <div class="bg-custom p-6 flex items-center">
             <!-- Back Arrow -->
             <a href="../unv_dashboard/index.html" class="back-arrow mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-deep-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-deep-green" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
             </a>
@@ -27,7 +29,7 @@
 
         <form id="jobOpeningForm" class="p-8 space-y-6">
             <div class="form-group">
-                <label for="title" class="block text-custom font-semibold mb-2">University Name</label>
+                <label for="name" class="block text-custom font-semibold mb-2">University Name</label>
                 <input type="text" id="name" name="name" placeholder="Change name"
                     class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
             </div>
@@ -37,7 +39,6 @@
                 <textarea id="description" name="description" rows="4" placeholder="Change description"
                     class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300"></textarea>
             </div>
-
 
             <div class="form-group">
                 <label for="location" class="block text-custom font-semibold mb-2">University Address</label>
@@ -51,10 +52,9 @@
                     class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
             </div>
 
-
             <div class="form-group">
                 <label for="website" class="block text-custom font-semibold mb-2">University Website</label>
-                <input type="text" id="website" name="website" placeholder="Change University website URL"
+                <input type="text" id="website" name="website" placeholder="Change University Website URL"
                     class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
             </div>
 
@@ -63,10 +63,10 @@
                 <input type="email" id="email" name="email" placeholder="Change University email"
                     class="form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none transition duration-300">
             </div>
-            
+
             <!-- Image Upload with Preview -->
             <div class="form-group">
-                <label for="image-upload" class="block text-custom font-semibold mb-2">University Image Upload</label>
+                <label for="bannerImage" class="block text-custom font-semibold mb-2">University Banner Upload</label>
                 <div id="dropZone"
                     class="file-drop-zone flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-transparent hover:bg-gray-100">
                     <svg class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -79,10 +79,9 @@
                         drop</p>
                     <p class="text-xs text-gray-500">PNG or JPG (MAX. 800x400px)</p>
                 </div>
-                <input id="image-upload" class="hidden" type="file" accept="image/*">
+                <input id="bannerImage" class="hidden" type="file" accept="image/*">
                 <p id="image-preview-name" class="mt-2 text-sm text-gray-600">No file chosen</p>
             </div>
-
 
             <div class="form-group">
                 <button type="submit"

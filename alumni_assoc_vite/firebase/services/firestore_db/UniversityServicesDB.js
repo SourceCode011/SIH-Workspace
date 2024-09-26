@@ -15,6 +15,7 @@ const db = getFirestore(app);
 class UniversityServicesDB {
   static TAG = "UniversityServicesDB";
   static COLLECTION_NAME = "university";
+  static POSTS_COLLECTION_NAME = "unv_posts";
 
   /**
    * Updates an existing university in the Firestore database.
@@ -59,6 +60,32 @@ class UniversityServicesDB {
     } catch (e) {
       console.error(
         `${UniversityServicesDB.TAG}: Error fetching university: ${unvId}`,
+        e
+      );
+      throw e;
+    }
+  }
+
+  /**
+   * Adds a new university post to the Firestore database.
+   *
+   * @param {Object} unvPost - The university post object to be added.
+   * @return {Promise<void>} - A promise representing the asynchronous operation.
+   */
+  async addUniversityPost(unvPost) {
+    const postsCollectionRef = collection(
+      db,
+      UniversityServicesDB.POSTS_COLLECTION_NAME
+    );
+
+    try {
+      await addDoc(postsCollectionRef, unvPost);
+      console.log(
+        `${UniversityServicesDB.TAG}: University post added successfully: ${unvPost.unv_post_id}`
+      );
+    } catch (e) {
+      console.error(
+        `${UniversityServicesDB.TAG}: Error adding university post: ${unvPost.unv_post_id}`,
         e
       );
       throw e;
