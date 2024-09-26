@@ -1,505 +1,228 @@
-// Function to show a modal
-function showModal(modal) {
-    modal.classList.remove('hidden');
+import AuthServices from "../../firebase/services/auth/AuthServices.js";
+import UserServicesDB from "../../firebase/services/firestore_db/UserServicesDB.js";
+import PostServicesDB from "../../firebase/services/firestore_db/PostServicesDB.js";
+
+const authServices = new AuthServices();
+const userServicesDB = new UserServicesDB();
+const postServicesDB = new PostServicesDB();
+
+// handle click on edit profile button
+document.querySelector(".edit-profile-btn").addEventListener("click", () => {
+  window.location.href = "../edit_profile_form/index.html";
+});
+
+// Sign out functionality
+document.getElementById("sign-out-btn").addEventListener("click", async () => {
+  try {
+    await authServices.signOut();
+    window.location.href = "../login_page/index.html";
+  } catch (error) {
+    console.error("Error signing out:", error);
+  }
+});
+
+// Debounce function to delay search execution
+function debounce(func, delay) {
+  let timeoutId;
+  return function (...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
 }
 
-// Function to hide a modal
-function hideModal(modal) {
-    modal.classList.add('hidden');
-}
+// Search functionality
+const searchInput = document.querySelector(".search-input");
+const resultsContainer = document.querySelector(".search-results");
 
-// Handle banner image upload and preview
-document.getElementById('banner-upload').addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById('banner-image').src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
-});
+const performSearch = async (searchTerm) => {
+  // Clear previous results
+  resultsContainer.innerHTML = "";
 
-// Banner deletion confirmation
-document.getElementById('delete-banner-icon').addEventListener('click', function() {
-    showModal(document.getElementById('delete-banner-modal'));
-});
-
-document.getElementById('confirm-delete-banner').addEventListener('click', function() {
-    document.getElementById('banner-image').src = 'https://static.vecteezy.com/system/resources/previews/002/534/006/original/social-media-chatting-online-blank-profile-picture-head-and-body-icon-people-standing-icon-grey-background-free-vector.jpg';
-    document.getElementById('banner-upload').value = "";  // Reset the input
-    hideModal(document.getElementById('delete-banner-modal'));
-});
-
-document.getElementById('cancel-delete-banner').addEventListener('click', function() {
-    hideModal(document.getElementById('delete-banner-modal'));
-});
-
-// Toggle edit banner section visibility
-document.getElementById('edit-banner-icon').addEventListener('click', function() {
-    document.getElementById('edit-banner-section').classList.remove('hidden');
-});
-
-document.getElementById('close-edit-section').addEventListener('click', function() {
-    document.getElementById('edit-banner-section').classList.add('hidden');
-});
-
-// Handle profile picture upload and preview
-document.getElementById('profile-pic-upload').addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById('profile-pic').src = e.target.result;
-            document.getElementById('profile-pic-edit').src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
-// Profile picture deletion confirmation
-document.getElementById('remove-icon').addEventListener('click', function() {
-    showModal(document.getElementById('delete-confirm-modal'));
-});
-
-document.getElementById('confirm-delete').addEventListener('click', function() {
-    const defaultPicUrl = 'https://static.vecteezy.com/system/resources/previews/002/534/006/original/social-media-chatting-online-blank-profile-picture-head-and-body-icon-people-standing-icon-grey-background-free-vector.jpg';
-    document.getElementById('profile-pic').src = defaultPicUrl;
-    document.getElementById('profile-pic-edit').src = defaultPicUrl;
-    document.getElementById('profile-pic-upload').value = "";  // Reset the input
-    hideModal(document.getElementById('delete-confirm-modal'));
-});
-
-document.getElementById('cancel-delete').addEventListener('click', function() {
-    hideModal(document.getElementById('delete-confirm-modal'));
-});
-
-// Toggle edit profile picture section visibility
-document.getElementById('edit-profile-pic-icon').addEventListener('click', function() {
-    document.getElementById('edit-profile-pic-section').classList.remove('hidden');
-});
-
-document.getElementById('close-edit-profile-pic-section').addEventListener('click', function() {
-    document.getElementById('edit-profile-pic-section').classList.add('hidden');
-});
-
-// Note: The following section is commented out as it references a nonexistent navbar
-/*
-document.querySelector('nav a:nth-child(1)').addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent default anchor click behavior
-    document.getElementById('user').classList.add('hidden'); // Hide the profile section
-    document.getElementById('posts-section').classList.remove('hidden'); // Show the posts section
-});
-*/
-
-document.addEventListener('DOMContentLoaded', function () {
-    const editProfileBtn = document.getElementById('edit-profile-btn');
-    const aboutSection = document.getElementById('about-section');
-    const aboutTextarea = document.getElementById('about-textarea');
-
-    editProfileBtn.addEventListener('click', () => {
-        if (aboutTextarea.classList.contains('hidden')) {
-            aboutTextarea.classList.remove('hidden');
-            aboutTextarea.value = aboutSection.textContent.trim();
-            aboutSection.classList.add('hidden');
-            aboutTextarea.disabled = false;
-            aboutTextarea.focus();
-            editProfileBtn.textContent = "Save";
-        } else {
-            aboutSection.textContent = aboutTextarea.value.trim() || "Tell something about you";
-            aboutTextarea.classList.add('hidden');
-            aboutSection.classList.remove('hidden');
-            aboutTextarea.disabled = true;
-            editProfileBtn.textContent = "Edit Your Profile";
-        }
-    });
-});
-
-
-
-// Function to handle tab switching
-function openTab(event, sectionId) {
-    // Hide all sections
-    document.querySelectorAll('.section').forEach((section) => {
-        section.classList.add('hidden');
-    });
-
-    // Remove active class from all navbar links
-    document.querySelectorAll('.nav-link').forEach((link) => {
-        link.classList.remove('text-blue-500', 'border-blue-500', 'font-bold');
-    });
-
-    // Show the selected section
-    document.getElementById(sectionId).classList.remove('hidden');
-
-    // Add active class to the clicked tab
-    event.target.classList.add('text-blue-500', 'border-blue-500', 'font-bold');
-}
-
-
-// Array to store posts
-let posts = [];
-
-// Function to add a new post
-function addPost() {
-    const postContent = document.getElementById('postContent').value.trim();
-
-    if (postContent) {
-        // Create a post object
-        const newPost = {
-            id: posts.length + 1,
-            content: postContent,
-            likes: 0,
-            comments: []
-        };
-
-        // Add the new post to the posts array
-        posts.unshift(newPost);
-
-        // Clear the input field
-        document.getElementById('postContent').value = '';
-
-        // Display the updated posts
-        displayPosts();
-    }
-}
-
-// Function to display posts
-function displayPosts() {
-    const postsDisplay = document.getElementById('postsDisplay');
-    postsDisplay.innerHTML = '';
-
-    posts.forEach(post => {
-        const postElement = document.createElement('div');
-        postElement.className = 'p-4 border border-gray-300 rounded-md';
-
-        postElement.innerHTML = `
-            <p class="text-gray-800">${post.content}</p>
-            <div class="flex items-center space-x-4 mt-2">
-                <button onclick="likePost(${post.id})" class="text-blue-500 hover:underline">Like (${post.likes})</button>
-                <button onclick="toggleCommentSection(${post.id})" class="text-blue-500 hover:underline">Comment (${post.comments.length})</button>
+  if (searchTerm.length > 0) {
+    resultsContainer.innerHTML = "<p class='text-white'>Searching...</p>";
+    try {
+      const users = await userServicesDB.getUsersByPartialUsername(searchTerm);
+      resultsContainer.innerHTML = ""; // Clear the "Searching..." message
+      if (users.length > 0) {
+        users.forEach((user) => {
+          const userComponent = document.createElement("div");
+          userComponent.className =
+            "user-component bg-white rounded-lg shadow-md p-2 flex items-center space-x-2 hover:bg-gray-50 transition duration-300 ease-in-out";
+          userComponent.innerHTML = `
+            <div class="flex-shrink-0">
+              <img src="${
+                user.pf_pic_url || "default-profile-pic.jpg"
+              }" alt="Profile Picture" class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
             </div>
-            <div id="comments-${post.id}" class="hidden mt-2">
-                <textarea id="commentInput-${post.id}" class="w-full p-1 border border-gray-300 rounded-md resize-none" rows="1" placeholder="Write a comment..."></textarea>
-                <button onclick="addComment(${post.id})" class="mt-1 px-2 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600">Add Comment</button>
-                <div id="commentsList-${post.id}" class="mt-2 space-y-2">
-                    <!-- Comments will be displayed here -->
-                </div>
+            <div class="flex-grow overflow-hidden">
+              <h3 class="text-sm font-semibold text-gray-800 truncate">${
+                user.full_name || "Full Name"
+              }</h3>
+              <p class="text-xs text-gray-600 truncate">@${user.user_name}</p>
             </div>
-        `;
-
-        postsDisplay.appendChild(postElement);
-    });
-}
-
-// Function to like a post
-function likePost(postId) {
-    const post = posts.find(p => p.id === postId);
-    if (post) {
-        post.likes += 1;
-        displayPosts();
-    }
-}
-
-// Function to toggle the comment section
-function toggleCommentSection(postId) {
-    const commentSection = document.getElementById(`comments-${postId}`);
-    if (commentSection) {
-        commentSection.classList.toggle('hidden');
-    }
-}
-
-// Function to add a comment to a post
-function addComment(postId) {
-    const commentInput = document.getElementById(`commentInput-${postId}`).value.trim();
-
-    if (commentInput) {
-        const post = posts.find(p => p.id === postId);
-        if (post) {
-            post.comments.push(commentInput);
-            document.getElementById(`commentInput-${postId}`).value = '';
-            displayPosts();
-        }
-    }
-}
-
-
-
-// Add event listener for the submit button
-document.getElementById('submit-post').addEventListener('click', function () {
-    const content = document.getElementById('postContent').value;
-    const fileInput = document.getElementById('post-upload');
-    const file = fileInput.files[0];
-
-    if (content || file) {
-        const postContainer = document.createElement('div');
-        postContainer.classList.add('border', 'p-4', 'rounded', 'mb-4', 'bg-gray-100');
-
-        // Add content
-        const postText = document.createElement('p');
-        postText.textContent = content;
-        postContainer.appendChild(postText);
-
-        // Add uploaded file preview
-        // if (file) {
-        //     const fileReader = new FileReader();
-        //     fileReader.onload = function (e) {
-        //         const filePreview = document.createElement('img');
-        //         filePreview.src = e.target.result;
-        //         filePreview.classList.add('w-full', 'h-auto', 'mt-2', 'rounded');
-        //         postContainer.appendChild(filePreview);
-        //     };
-        //     fileReader.readAsDataURL(file);
-        // }
-
-        if (file) {
-            const fileReader = new FileReader();
-            fileReader.onload = function(e) {
-                const filePreview = document.createElement('img');
-                filePreview.src = e.target.result;
-        
-                // Set a specific aspect ratio using Tailwind classes
-                filePreview.classList.add('w-full', 'h-48', 'object-cover', 'rounded', 'mt-2'); // h-48 sets a fixed height
-        
-                postContainer.appendChild(filePreview);
-            };
-            fileReader.readAsDataURL(file);
-        }
-
-        // Append the new post to the post feed
-        document.getElementById('postsDisplay').prepend(postContainer);
-
-        // Reset the input fields
-        document.getElementById('postContent').value = '';
-        fileInput.value = ''; // Reset the file input
-    } else {
-        alert("Please enter some content or upload a file.");
-    }
-
-    
-
-
-
-});
-
-
-
-// JavaScript for handling the account type selection
-document.getElementById('editAccountTypeIcon').addEventListener('click', function (event) {
-    const dropdown = document.getElementById('accountTypeDropdown');
-    dropdown.classList.toggle('hidden');
-    event.stopPropagation();
-});
-
-// Function to select an account type
-function selectAccountType(type) {
-    const accountTypeInput = document.getElementById('accountType');
-    accountTypeInput.value = type; // Set the selected value
-
-    // Update the course prefix based on the selected account type
-    const coursePrefixInput = document.getElementById('coursePrefixInput');
-    if (type === 'a Student') {
-        coursePrefixInput.value = "I'm pursuing";
-    } else if (type === 'an Alumni') {
-        coursePrefixInput.value = "I pursue";
-    }
-
-    // Adjust the width of the coursePrefixInput based on its value
-    // coursePrefixInput.style.width = `${coursePrefixInput.value.length + 0.5}ch`; // +2 for padding
-    // Adjust the width of the coursePrefixInput based on its value
-    coursePrefixInput.style.width = `${Math.min(coursePrefixInput.value.length + 1, 10)}ch`; // Limit to max 20 characters
-
-
-    // Hide the dropdown after selection
-    document.getElementById('accountTypeDropdown').classList.add('hidden');
-}
-
-// Close the dropdown if clicked outside
-document.addEventListener('click', function (event) {
-    const dropdown = document.getElementById('accountTypeDropdown');
-    const inputField = document.getElementById('accountType');
-    const editIcon = document.getElementById('editAccountTypeIcon');
-
-    if (!dropdown.contains(event.target) && event.target !== inputField && event.target !== editIcon) {
-        dropdown.classList.add('hidden');
-    }
-});
-
-// Allow editing of the course input field
-document.getElementById('editCourseIcon').addEventListener('click', function () {
-    const courseInput = document.getElementById('courseInput');
-    courseInput.removeAttribute('readonly');
-    courseInput.focus();
-
-    // Revert to read-only mode after editing
-    courseInput.addEventListener('blur', function () {
-        courseInput.setAttribute('readonly', true);
-    });
-});
-
-
-// Allow editing of the school input field
-document.getElementById('editSchoolIcon').addEventListener('click', function () {
-    const schoolInput = document.getElementById('schoolInput');
-    schoolInput.removeAttribute('readonly');
-    schoolInput.focus();
-
-    // Revert to read-only mode after editing
-    schoolInput.addEventListener('blur', function () {
-        schoolInput.setAttribute('readonly', true);
-    });
-});
-
-
-// Allow editing of the address input field
-document.getElementById('editAddressIcon').addEventListener('click', function () {
-    const addressInput = document.getElementById('addressInput');
-    addressInput.removeAttribute('readonly');
-    addressInput.focus();
-
-    // Revert to read-only mode after editing
-    addressInput.addEventListener('blur', function () {
-        addressInput.setAttribute('readonly', true);
-    });
-});
-
-// Manage Post Button Functionality
-document.getElementById('managePostBtn').addEventListener('click', function () {
-    const icon = document.getElementById('managePostIcon');
-    icon.classList.toggle('rotate');
-    document.getElementById('managePostSection').classList.remove('hidden');
-});
-
-// Close Manage Your Post Section
-document.getElementById('closeManagePost').addEventListener('click', function () {
-    document.getElementById('managePostSection').classList.add('hidden');
-});
-
-// Delete Selected Posts
-document.getElementById('deletePostsBtn').addEventListener('click', function () {
-    const checkedPosts = Array.from(document.querySelectorAll('#managePostsGrid input[type="checkbox"]:checked'));
-
-    checkedPosts.forEach(checkbox => {
-        const postId = parseInt(checkbox.closest('div').dataset.postId);
-        posts = posts.filter(post => post.id !== postId);
-    });
-
-    displayPosts();
-});
-
-// Cancel Manage Your Post
-document.getElementById('cancelManageBtn').addEventListener('click', function () {
-    document.getElementById('managePostSection').classList.add('hidden');
-});
-
-// Function to display posts
-function displayPosts() {
-    const postsDisplay = document.getElementById('postsDisplay');
-    postsDisplay.innerHTML = '';
-
-    const managePostsGrid = document.getElementById('managePostsGrid');
-    const noPostsMessage = document.getElementById('noPostsMessage');
-
-    // Clear previous posts
-    managePostsGrid.innerHTML = '';
-
-    if (posts.length > 0) {
-        noPostsMessage.classList.add('hidden'); // Hide no posts message
-        posts.forEach(post => {
-            const postElement = document.createElement('div');
-            postElement.className = 'p-4 border border-gray-300 rounded-md relative';
-            postElement.dataset.postId = post.id; // Add data attribute for post ID
-
-            postElement.innerHTML = `
-                <input type="checkbox" class="absolute top-2 right-2">
-                <p class="text-gray-800">${post.content}</p>
-                <div class="flex items-center space-x-4 mt-2">
-                    <button onclick="likePost(${post.id})" class="text-blue-500 hover:underline">Like (${post.likes})</button>
-                    <button onclick="toggleCommentSection(${post.id})" class="text-blue-500 hover:underline">Comment (${post.comments.length})</button>
-                </div>
-            `;
-
-            managePostsGrid.appendChild(postElement);
+          `;
+          resultsContainer.appendChild(userComponent);
         });
-    } else {
-        noPostsMessage.classList.remove('hidden'); // Show no posts message
+      } else {
+        resultsContainer.innerHTML = "<p class='text-white'>No user found.</p>";
+      }
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      resultsContainer.innerHTML =
+        "<p class='text-white'>Error fetching users.</p>";
     }
+  } else {
+    // Clear the results container if the search term is empty
+    resultsContainer.innerHTML = "";
+  }
+};
+
+const debouncedSearch = debounce(performSearch, 300);
+
+searchInput.addEventListener("input", (event) => {
+  const searchTerm = event.target.value.trim();
+  debouncedSearch(searchTerm);
+});
+
+// Hamburger menu functionality
+document.getElementById("hamburger-menu").addEventListener("click", () => {
+  const leftSidebar = document.getElementById("left-sidebar");
+  leftSidebar.classList.toggle("hidden");
+});
+
+// Fetch and display current user info
+let currentUserData = null;
+
+authServices.getCurrentUser(async (user) => {
+  if (user) {
+    try {
+      currentUserData = await userServicesDB.getUser(user.uid);
+
+      // Update all elements with the class "profile-pic"
+      document.querySelectorAll(".profile-pic").forEach((element) => {
+        element.src = currentUserData.pf_pic_url || "default-profile-pic.jpg";
+      });
+
+      // Update all elements with the class "full-name"
+      document.querySelectorAll(".full-name").forEach((element) => {
+        element.textContent = currentUserData.full_name || "Full Name";
+      });
+
+      // Update all elements with the class "user-name"
+      document.querySelectorAll(".user-name").forEach((element) => {
+        element.textContent = `@${currentUserData.user_name}` || "@username";
+      });
+
+      // Update all elements with the class "user-type"
+      document.querySelectorAll(".user-type").forEach((element) => {
+        element.textContent = currentUserData.type || "Type";
+      });
+
+      // Initially populate the "About" section
+      populateAboutSection(currentUserData);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  } else {
+    console.log("No user is signed in.");
+  }
+});
+
+function populateAboutSection(userData) {
+  const aboutContent = `
+    <div class="space-y-6">
+      <div class="flex flex-col">
+        <span class="text-primary font-semibold text-xl flex items-center">
+          <i class="fas fa-user mr-2"></i>Bio
+        </span>
+        <span class="text-gray-600 mt-4">${userData.bio || "N/A"}</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-primary font-semibold text-xl flex items-center">
+          <i class="fas fa-phone mr-2"></i>Contact Number
+        </span>
+        <span class="text-gray-600 mt-4">${userData.contact_num || "N/A"}</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-primary font-semibold text-xl flex items-center">
+          <i class="fas fa-map-marker-alt mr-2"></i>Current Location
+        </span>
+        <span class="text-gray-600 mt-4">${userData.current_location || "N/A"}</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-primary font-semibold text-xl flex items-center">
+          <i class="fas fa-graduation-cap mr-2"></i>Domain
+        </span>
+        <span class="text-gray-600 mt-4">${userData.domain || "N/A"}</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-primary font-semibold text-xl flex items-center">
+          <i class="fas fa-envelope mr-2"></i>Email
+        </span>
+        <span class="text-gray-600 mt-4">${userData.email || "N/A"}</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-primary font-semibold text-xl flex items-center">
+          <i class="fas fa-id-card mr-2"></i>Enrollment Number
+        </span>
+        <span class="text-gray-600 mt-4">${userData.enrollment_num || "N/A"}</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-primary font-semibold text-xl flex items-center">
+          <i class="fas fa-calendar-alt mr-2"></i>Graduation Year
+        </span>
+        <span class="text-gray-600 mt-4">${userData.graduation_year || "N/A"}</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-primary font-semibold text-xl flex items-center">
+          <i class="fas fa-briefcase mr-2"></i>Workplace
+        </span>
+        <span class="text-gray-600 mt-4">${userData.workplace || "N/A"}</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-primary font-semibold text-xl flex items-center">
+          <i class="fas fa-book mr-2"></i>Year of Study
+        </span>
+        <span class="text-gray-600 mt-4">${userData.year_of_study || "N/A"}</span>
+      </div>
+    </div>
+  `;
+  document.getElementById("tabContent").innerHTML = aboutContent;
 }
 
+// Tab functionality
+const tabs = document.querySelectorAll("[data-tab]");
+const tabContent = document.getElementById("tabContent");
 
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    tabs.forEach((t) => {
+      t.classList.remove(
+        "text-primary",
+        "border-b-2",
+        "border-primary",
+        "font-medium",
+        "text-xl"
+      );
+      t.classList.add("text-gray-600");
+    });
 
-//About the post
-const bioInput = document.getElementById('bio-input');
-const aboutTextarea = document.getElementById('about-textarea');
-const editProfileBtn = document.getElementById('edit-profile-btn');
-const editButtons = document.getElementById('edit-buttons');
-let previousBio = "";
+    tab.classList.add(
+      "text-primary",
+      "border-b-2",
+      "border-primary",
+      "font-medium",
+      "text-xl"
+    );
+    tab.classList.remove("text-gray-600");
 
-// Sync bio from input field to textarea
-function syncBio() {
-  aboutTextarea.value = bioInput.value; // Update textarea with input value
-}
-
-// Event listener to sync changes in the input field to the textarea
-bioInput.addEventListener('input', syncBio);
-
-// Event listener to sync changes in the textarea to the input field
-aboutTextarea.addEventListener('input', () => {
-  bioInput.value = aboutTextarea.value; // Update input field with textarea value
+    const tabName = tab.getAttribute("data-tab");
+    if (tabName === "about") {
+      populateAboutSection(currentUserData);
+    } else {
+      tabContent.innerHTML = `<p class="text-center text-gray-600">${tabName} content goes here.</p>`;
+    }
+  });
 });
-
-// Click event for "Edit Your Profile" button
-editProfileBtn.addEventListener('click', () => {
-  previousBio = aboutTextarea.value; // Save the current bio
-  bioInput.readOnly = false; // Make input editable
-  aboutTextarea.readOnly = false; // Make textarea editable
-  editButtons.style.display = 'block'; // Show save and cancel buttons
-});
-
-// Click event for "Save" button
-document.getElementById('save-btn').addEventListener('click', () => {
-  bioInput.readOnly = true; // Make input read-only again
-  aboutTextarea.readOnly = true; // Make textarea read-only again
-  editButtons.style.display = 'none'; // Hide save and cancel buttons
-});
-
-// Click event for "Cancel" button
-document.getElementById('cancel-btn').addEventListener('click', () => {
-  bioInput.value = previousBio; // Revert to previous bio
-  aboutTextarea.value = previousBio; // Revert to previous bio
-  bioInput.readOnly = true; // Make input read-only again
-  aboutTextarea.readOnly = true; // Make textarea read-only again
-  editButtons.style.display = 'none'; // Hide save and cancel buttons
-});
-
-
-
-//socialmedia
-document.getElementById('save-social-media').addEventListener('click', function() {
-    const linkedin = document.getElementById('linkedin').value;
-    const facebook = document.getElementById('facebook').value;
-    const instagram = document.getElementById('instagram').value;
-    const github = document.getElementById('github').value;
-
-    // Save links to localStorage
-    localStorage.setItem('linkedin', linkedin);
-    localStorage.setItem('facebook', facebook);
-    localStorage.setItem('instagram', instagram);
-    localStorage.setItem('github', github);
-
-    alert('Social media links saved successfully!');
-});
-
-// Function to load saved links on page load
-function loadSocialMediaLinks() {
-    document.getElementById('linkedin').value = localStorage.getItem('linkedin') || '';
-    document.getElementById('facebook').value = localStorage.getItem('facebook') || '';
-    document.getElementById('instagram').value = localStorage.getItem('instagram') || '';
-    document.getElementById('github').value = localStorage.getItem('github') || '';
-}
-
-// Load links when the page is loaded
-window.onload = loadSocialMediaLinks;
-
-
-//about page 

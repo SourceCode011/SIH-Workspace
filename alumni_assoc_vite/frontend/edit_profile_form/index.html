@@ -8,15 +8,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
     <script src="./script.js" type="module" defer></script>
-    <title>Additional Details Form</title>
+    <title>Update Profile</title>
 </head>
 
 <body class="bg-gray-100 min-h-screen flex items-center justify-center py-12">
 
     <div class="container max-w-4xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
         <div class="bg-custom p-6 flex items-center ">
+            <!-- Back Arrow -->
+            <a href="javascript:history.back()" class="back-arrow mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-deep-green" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+            </a>
             <!--Page Title-->
-            <h2 class="text-3xl font-bold text-center text-white">Tell Us About Yourself</h2>
+            <h2 class="text-3xl font-bold text-center text-white">Update Your Profile</h2>
         </div>
         <form id="additionalDetailsForm" class="p-8 space-y-6">
             <!-- Full Name -->
@@ -134,7 +141,7 @@
             <!-- Submit Button -->
             <div class="form-group">
                 <button type="submit"
-                    class="w-full p-4 bg-custom text-white font-bold rounded-lg hover:bg-custom-dark transition duration-300 hover:shadow-lg">Continue</button>
+                    class="w-full p-4 bg-custom text-white font-bold rounded-lg hover:bg-custom-dark transition duration-300 hover:shadow-lg">Update</button>
             </div>
         </form>
     </div>

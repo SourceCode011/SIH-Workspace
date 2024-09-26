@@ -4,59 +4,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University Post Card Example</title>
+    <title>Profile Section</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f3f4f6;
-        }
-    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./test.css"> <!-- Link to your styles.css -->
 </head>
 
-<body class="p-8">
-    <div class="max-w-2xl mx-auto">
-        <h1 class="text-3xl font-bold text-center mb-8">University Post Card</h1>
-
-        <!-- University Post Card -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-            <!-- Post Image Section -->
-            <div class="relative">
-                <img src="https://via.placeholder.com/800x400" alt="University Post Image"
-                    class="w-full h-48 object-cover">
+<body class="bg-gray-100">
+    <div class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-10">
+        <div class="relative h-48 pfp_banner">
+            <div
+                class="absolute inset-0 flex items-center justify-center text-white text-opacity-50 text-xl font-semibold">
+                Banner Image
             </div>
+            <button
+                class="absolute top-4 right-4 px-4 py-2 bg-primary text-white rounded-full hover:bg-secondary transition shadow-md">
+                <i class="fas fa-edit mr-2"></i>Edit Profile
+            </button>
+        </div>
 
-            <!-- Post Content Section -->
-            <div class="p-6">
-                <!-- Post Title (Moved out of the image section) -->
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">Sample University Post Title</h2>
-
-                <p class="text-gray-700 mb-4">
-                    This is a sample description for the university post. It can contain details about the university,
-                    announcements, or any other relevant information.
-                </p>
-
-                <div class="flex items-center justify-between mt-4">
-                    <div class="flex items-center">
-                        <i class="fas fa-calendar-alt text-blue-500 mr-2"></i>
-                        <span class="text-sm text-gray-600">Posted on: <time datetime="2024-09-26">Sep 26,
-                                2024</time></span>
+        <div class="relative px-6 py-5">
+            <div class="flex flex-wrap items-center">
+                <div class="flex items-center flex-grow">
+                    <div
+                        class="w-24 h-24 bg-gray-300 rounded-full flex items-center justify-center text-gray-500 border-4 border-white shadow-lg absolute -top-12">
+                        <i class="fas fa-user-circle text-4xl"></i>
+                    </div>
+                    <div class="ml-28">
+                        <h2 class="text-2xl font-bold text-gray-800">full_name</h2>
+                        <p class="text-gray-600">@user_name</p>
                     </div>
                 </div>
-            </div>
-
-            <!-- More Info Button Section -->
-            <div class="bg-gray-50 px-6 py-4 flex justify-end">
-                <button
-                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 flex items-center">
-                    <i class="fas fa-info-circle mr-2"></i>
-                    More Info
-                </button>
+                <div class="mt-4 sm:mt-0 text-right">
+                    <p class="text-gray-600"><i class="fas fa-users mr-2"></i>0 connections</p>
+                    <p class="mt-1 text-primary font-semibold"><i class="fas fa-graduation-cap mr-2"></i>Student</p>
+                </div>
             </div>
         </div>
+
+        <div class="border-t border-gray-200">
+            <nav class="flex justify-around">
+                <button
+                    class="flex-1 py-4 px-6 text-center text-primary border-b-2 border-primary font-medium transition"
+                    data-tab="about">
+                    <i class="fas fa-user mr-2"></i> About
+                </button>
+                <button class="flex-1 py-4 px-6 text-center text-gray-600 hover:text-primary transition"
+                    data-tab="posts">
+                    <i class="fas fa-pencil-alt mr-2"></i> Posts
+                </button>
+                <button class="flex-1 py-4 px-6 text-center text-gray-600 hover:text-primary transition"
+                    data-tab="media">
+                    <i class="fas fa-image mr-2"></i> Media
+                </button>
+            </nav>
+        </div>
+
+        <div id="tabContent" class="p-6">
+            <p class="text-center text-gray-600">About content goes here.</p>
+        </div>
     </div>
+
+    <script>
+        const tabs = document.querySelectorAll('[data-tab]');
+        const tabContent = document.getElementById('tabContent');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('text-primary', 'border-b-2', 'border-primary', 'font-medium');
+                    t.classList.add('text-gray-600');
+                });
+
+                tab.classList.add('text-primary', 'border-b-2', 'border-primary', 'font-medium');
+                tab.classList.remove('text-gray-600');
+
+                tabContent.innerHTML = `<p class="text-center text-gray-600">${tab.getAttribute('data-tab')} content goes here.</p>`;
+            });
+        });
+    </script>
 </body>
 
 </html>

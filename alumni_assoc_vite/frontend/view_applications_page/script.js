@@ -93,15 +93,6 @@ async function handleApplicationDecision(
   }
 }
 
-document.getElementById("sign-out-btn").addEventListener("click", async () => {
-  try {
-    await authServices.signOut();
-    window.location.href = "../login_page/index.html";
-  } catch (error) {
-    console.error("Error signing out:", error);
-  }
-});
-
 function showModal(imageUrl) {
   const modal = document.getElementById("image-modal");
   const modalImage = document.getElementById("modal-image");
