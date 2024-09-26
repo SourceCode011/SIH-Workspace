@@ -7,22 +7,24 @@
     <title>University Donation Portal</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" type="module" defer></script>
 </head>
 
 <body>
     <header class="bg-custom py-6 text-white text-center">
 
-                <!-- Back Button -->
-                <div class="flex items-center justify-start pl-4">
-                    <!-- Back Arrow -->
+        <!-- Back Button -->
+        <div class="flex items-center justify-start pl-4">
+            <!-- Back Arrow -->
             <a href="../unv_dashboard/index.html" class="back-arrow mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-deep-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-deep-green" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
                 Back
             </a>
-                </div>
-        
+        </div>
+
         <h1 class="text-4xl font-bold">University Donation Portal</h1>
         <p class="text-lg mt-2">Support the future by making a donation</p>
     </header>
@@ -31,19 +33,22 @@
         <section class="mb-12 text-center">
             <h2 class="text-3xl font-semibold">Why Donate?</h2>
             <p class="mt-4 text-lg text-gray-600">
-                Your contribution helps fund scholarships, campus improvements, and new research projects. Every donation makes a difference!
+                Your contribution helps fund scholarships, campus improvements, and new research projects. Every
+                donation makes a difference!
             </p>
         </section>
 
         <section class="donation-options grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="option p-6 bg-gray-100 rounded-lg shadow">
                 <h3 class="text-2xl font-bold mb-2">Scholarship Fund</h3>
-                <p class="text-gray-600 mb-4">Help provide students with financial aid and support their academic journey.</p>
+                <p class="text-gray-600 mb-4">Help provide students with financial aid and support their academic
+                    journey.</p>
                 <a href="#donate" class="btn-donate">Donate Now</a>
             </div>
             <div class="option p-6 bg-gray-100 rounded-lg shadow">
                 <h3 class="text-2xl font-bold mb-2">Campus Development</h3>
-                <p class="text-gray-600 mb-4">Contribute to the construction of new buildings and modernization of facilities.</p>
+                <p class="text-gray-600 mb-4">Contribute to the construction of new buildings and modernization of
+                    facilities.</p>
                 <a href="#donate" class="btn-donate">Donate Now</a>
             </div>
             <div class="option p-6 bg-gray-100 rounded-lg shadow">
@@ -57,47 +62,7 @@
                 <a href="#donate" class="btn-donate">Donate Now</a>
             </div>
         </section>
-
-        <section id="donate" class="mt-12">
-            <h2 class="text-3xl font-semibold text-center">Make a Donation</h2>
-            <form id="donationForm" class="mt-8 max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg">
-                <div class="form-group mb-4">
-                    <label for="fullName" class="block font-semibold">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" required class="form-input mt-2 w-full p-4 border-gray-300 rounded-lg">
-                </div>
-
-                <div class="form-group mb-4">
-                    <label for="email" class="block font-semibold">Email</label>
-                    <input type="email" id="email" name="email" required class="form-input mt-2 w-full p-4 border-gray-300 rounded-lg">
-                </div>
-
-                <div class="form-group mb-4">
-                    <label for="amount" class="block font-semibold">Donation Amount</label>
-                    <input type="number" id="amount" name="amount" required class="form-input mt-2 w-full p-4 border-gray-300 rounded-lg">
-                </div>
-
-                <div class="form-group mb-6">
-                    <label for="donationType" class="block font-semibold">Donation Type</label>
-                    <select id="donationType" name="donationType" required class="form-input mt-2 w-full p-4 border-gray-300 rounded-lg">
-                        <option value="Scholarship Fund">Scholarship Fund</option>
-                        <option value="Campus Development">Campus Development</option>
-                        <option value="Research Funding">Research Funding</option>
-                        <option value="General Donation">General Donation</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="w-full p-4 bg-custom text-white font-bold rounded-lg hover:bg-custom-dark transition duration-300">
-                    Submit Donation
-                </button>
-            </form>
-        </section>
     </main>
-
-    <footer class="bg-custom text-white text-center py-4">
-        <p>&copy; 2024 University Donation Portal. All rights reserved.</p>
-    </footer>
-
-    <script src="script.js"></script>
 </body>
 
 </html>

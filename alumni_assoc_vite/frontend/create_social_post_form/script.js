@@ -91,7 +91,7 @@ authService.getCurrentUser(async (currentUser) => {
 
     const post = {
       post_id: postId,
-      type: "social",
+      post_type: "social",
       user_id: currentUser.uid,
       created_at: new Date(),
     };

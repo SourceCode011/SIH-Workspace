@@ -81,7 +81,7 @@ authService.getCurrentUser(async (currentUser) => {
 
     const post = {
       post_id: postId,
-      type: "jobs",
+      post_type: "jobs",
       user_id: currentUser.uid,
       created_at: new Date().toISOString(),
     };

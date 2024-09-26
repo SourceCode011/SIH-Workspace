@@ -162,7 +162,7 @@ authService.getCurrentUser(async (currentUser) => {
     // Create post object
     const post = {
       post_id: postId,
-      type: "event",
+      post_type: "event",
       user_id: currentUser.uid,
       created_at: new Date().toISOString(),
     };

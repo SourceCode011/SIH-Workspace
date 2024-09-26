@@ -1,80 +1,228 @@
 body {
-    font-family: "Poppins", sans-serif;
-  }
-  
-  .scrollable-content {
-    height: calc(100vh - 4rem);
-    overflow-y: auto;
-  }
-  
-  .bg-primary {
-    background-color: #2c7772;
-  }
-  
-  .bg-secondary {
-    background-color: #1e5954;
-  }
-  
-  .bg-accent {
-    background-color: #ff6b6b;
-  }
-  
-  .bg-hover {
-    background-color: #a2e0e1;
-  }
-  
-  .bg-banner {
-    background-color: #a2e0e1;
-    object-fit: cover;
-  }
-  
-  .text-light {
-    color: #f9fafb;
-  }
-  
-  .text-muted {
-    color: #a2e0e1;
-  }
-  
-  .text-primary {
-    color: #2c7772;
-  }
-  
-  .sidebar-link {
-    transition: all 0.3s ease;
-  }
-  
-  .sidebar-link:hover {
-    background-color: #a2e0e1;
-    color: #2c7772;
-    transform: translateX(5px);
-  }
-  
-  .nav-shadow {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  }
-  
-  button:hover {
-    background-color: #cc0000; /* Dark red */
-    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8); /* White shadow */
-  }
-  
-  input[type="text"] {
-    background-color: #f9fafb;
-    border: 1px solid #e5e7eb;
-    padding: 0.5rem;
-    border-radius: 0.375rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.scrollable-content {
+  height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+
+.bg-primary {
+  background-color: #2c7772;
+}
+
+.bg-secondary {
+  background-color: #1e5954;
+}
+
+.bg-accent {
+  background-color: #ff6b6b;
+}
+
+.bg-hover {
+  background-color: #a2e0e1;
+}
+
+.bg-banner {
+  background-color: #a2e0e1;
+  object-fit: cover;
+}
+
+.text-light {
+  color: #f9fafb;
+}
+
+.text-muted {
+  color: #a2e0e1;
+}
+
+.text-primary {
+  color: #2c7772;
+}
+
+.sidebar-link {
+  transition: all 0.3s ease;
+}
+
+.sidebar-link:hover {
+  background-color: #a2e0e1;
+  color: #2c7772;
+  transform: translateX(5px);
+}
+
+.nav-shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+button:hover {
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8); /* White shadow */
+}
+
+input[type="text"] {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  width: 100%;
+  color: #1f2937;
+}
+
+input[type="text"]::placeholder {
+  color: #9ca3af;
+}
+
+.search-results {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.create-btn {
+  background-color: #2c7772;
+}
+
+.create-btn:hover {
+  background-color: #1e5954;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+#social-posts-container {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  aside {
+    position: static;
     width: 100%;
-    color: #1f2937;
+    height: auto;
   }
-  
-  input[type="text"]::placeholder {
-    color: #9ca3af;
+
+  main {
+    margin-left: 0;
+    margin-right: 0;
   }
-  
-  .search-results {
-    max-height: 400px;
-    overflow-y: auto;
+
+  #social-posts-container {
+    padding: 0 1rem;
   }
-  
+
+  .create-btn {
+    right: 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  main {
+    margin-right: 0;
+  }
+
+  #social-posts-container {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  #social-posts-container {
+    padding: 0 4rem;
+  }
+}
+
+/* Tab Layout Styles */
+.tab-content {
+  display: none;
+}
+
+.active-tab {
+  display: block;
+}
+
+/* New Styles for Tabs */
+.tab-link {
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.tab-link.active {
+  color: #2c7772;
+  border-bottom: 2px solid #2c7772;
+}
+
+.tab-link:hover {
+  color: #1e5954;
+}
+
+/* Donation Tab Styles */
+.bg-custom {
+  background-color: #2c7772;
+}
+
+.bg-custom-dark {
+  background-color: #215653;
+}
+
+.text-custom {
+  color: #2c7772;
+}
+
+.form-input {
+  border: 2px solid #2c7772;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #215653;
+  outline: none;
+  box-shadow: 0 0 10px 2px rgba(33, 86, 83, 0.5);
+}
+
+.btn-donate {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #2c7772;
+  color: white;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.btn-donate:hover {
+  background-color: #215653;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  color: #333;
+}
+
+/* Back Arrow Styling */
+.back-arrow {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.back-arrow svg {
+  width: 25px;
+  height: 25px;
+  color: #ffffff; /* White color */
+  transition: color 0.3s ease;
+}
+
+.back-arrow:hover svg {
+  color: #004b23; /* Darker green on hover */
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+}
+
+.modal-content {
+  max-width: 500px;
+  width: 90%;
+}
