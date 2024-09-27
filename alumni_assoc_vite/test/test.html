@@ -4,85 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Section</title>
+    <title>Verified Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./test.css"> <!-- Link to your styles.css -->
 </head>
 
-<body class="bg-gray-100">
-    <div class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-10">
-        <div class="relative h-48 pfp_banner">
-            <div
-                class="absolute inset-0 flex items-center justify-center text-white text-opacity-50 text-xl font-semibold">
-                Banner Image
-            </div>
-            <button
-                class="absolute top-4 right-4 px-4 py-2 bg-primary text-white rounded-full hover:bg-secondary transition shadow-md">
-                <i class="fas fa-edit mr-2"></i>Edit Profile
-            </button>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md">
+        <div class="flex items-center space-x-2">
+            <h2 class="text-2xl font-bold text-gray-800 full-name">Full Name</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
         </div>
-
-        <div class="relative px-6 py-5">
-            <div class="flex flex-wrap items-center">
-                <div class="flex items-center flex-grow">
-                    <div
-                        class="w-24 h-24 bg-gray-300 rounded-full flex items-center justify-center text-gray-500 border-4 border-white shadow-lg absolute -top-12">
-                        <i class="fas fa-user-circle text-4xl"></i>
-                    </div>
-                    <div class="ml-28">
-                        <h2 class="text-2xl font-bold text-gray-800">full_name</h2>
-                        <p class="text-gray-600">@user_name</p>
-                    </div>
-                </div>
-                <div class="mt-4 sm:mt-0 text-right">
-                    <p class="text-gray-600"><i class="fas fa-users mr-2"></i>0 connections</p>
-                    <p class="mt-1 text-primary font-semibold"><i class="fas fa-graduation-cap mr-2"></i>Student</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="border-t border-gray-200">
-            <nav class="flex justify-around">
-                <button
-                    class="flex-1 py-4 px-6 text-center text-primary border-b-2 border-primary font-medium transition"
-                    data-tab="about">
-                    <i class="fas fa-user mr-2"></i> About
-                </button>
-                <button class="flex-1 py-4 px-6 text-center text-gray-600 hover:text-primary transition"
-                    data-tab="posts">
-                    <i class="fas fa-pencil-alt mr-2"></i> Posts
-                </button>
-                <button class="flex-1 py-4 px-6 text-center text-gray-600 hover:text-primary transition"
-                    data-tab="media">
-                    <i class="fas fa-image mr-2"></i> Media
-                </button>
-            </nav>
-        </div>
-
-        <div id="tabContent" class="p-6">
-            <p class="text-center text-gray-600">About content goes here.</p>
-        </div>
+        <p class="text-gray-600 user-name">@username</p>
     </div>
-
-    <script>
-        const tabs = document.querySelectorAll('[data-tab]');
-        const tabContent = document.getElementById('tabContent');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(t => {
-                    t.classList.remove('text-primary', 'border-b-2', 'border-primary', 'font-medium');
-                    t.classList.add('text-gray-600');
-                });
-
-                tab.classList.add('text-primary', 'border-b-2', 'border-primary', 'font-medium');
-                tab.classList.remove('text-gray-600');
-
-                tabContent.innerHTML = `<p class="text-center text-gray-600">${tab.getAttribute('data-tab')} content goes here.</p>`;
-            });
-        });
-    </script>
 </body>
 
 </html>

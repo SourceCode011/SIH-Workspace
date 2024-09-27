@@ -69,9 +69,18 @@ const performSearch = async (searchTerm) => {
               }" alt="Profile Picture" class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
             </div>
             <div class="flex-grow overflow-hidden">
-              <h3 class="text-sm font-semibold text-gray-800 truncate">${
-                user.full_name || "Full Name"
-              }</h3>
+              <div class="flex items-center space-x-1">
+                <h3 class="text-sm font-semibold text-gray-800 truncate">${
+                  user.full_name || "Full Name"
+                }</h3>
+                ${
+                  user.is_verified
+                    ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>`
+                    : ""
+                }
+              </div>
               <p class="text-xs text-gray-600 truncate">@${user.user_name}</p>
             </div>
           `;

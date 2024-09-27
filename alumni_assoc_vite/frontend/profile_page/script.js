@@ -57,9 +57,18 @@ const performSearch = async (searchTerm) => {
               }" alt="Profile Picture" class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
             </div>
             <div class="flex-grow overflow-hidden">
-              <h3 class="text-sm font-semibold text-gray-800 truncate">${
-                user.full_name || "Full Name"
-              }</h3>
+              <div class="flex items-center space-x-1">
+                <h3 class="text-sm font-semibold text-gray-800 truncate">${
+                  user.full_name || "Full Name"
+                }</h3>
+                ${
+                  user.is_verified
+                    ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>`
+                    : ""
+                }
+              </div>
               <p class="text-xs text-gray-600 truncate">@${user.user_name}</p>
             </div>
           `;
@@ -120,6 +129,13 @@ authServices.getCurrentUser(async (user) => {
         element.textContent = currentUserData.type || "Type";
       });
 
+      // Show verified mark if user is verified
+      if (currentUserData.is_verified) {
+        document.querySelectorAll(".verified-mark").forEach((element) => {
+          element.classList.remove("hidden");
+        });
+      }
+
       // Initially populate the "About" section
       populateAboutSection(currentUserData);
     } catch (error) {
@@ -149,7 +165,9 @@ function populateAboutSection(userData) {
         <span class="text-primary font-semibold text-xl flex items-center">
           <i class="fas fa-map-marker-alt mr-2"></i>Current Location
         </span>
-        <span class="text-gray-600 mt-4">${userData.current_location || "N/A"}</span>
+        <span class="text-gray-600 mt-4">${
+          userData.current_location || "N/A"
+        }</span>
       </div>
       <div class="flex flex-col">
         <span class="text-primary font-semibold text-xl flex items-center">
@@ -167,13 +185,17 @@ function populateAboutSection(userData) {
         <span class="text-primary font-semibold text-xl flex items-center">
           <i class="fas fa-id-card mr-2"></i>Enrollment Number
         </span>
-        <span class="text-gray-600 mt-4">${userData.enrollment_num || "N/A"}</span>
+        <span class="text-gray-600 mt-4">${
+          userData.enrollment_num || "N/A"
+        }</span>
       </div>
       <div class="flex flex-col">
         <span class="text-primary font-semibold text-xl flex items-center">
           <i class="fas fa-calendar-alt mr-2"></i>Graduation Year
         </span>
-        <span class="text-gray-600 mt-4">${userData.graduation_year || "N/A"}</span>
+        <span class="text-gray-600 mt-4">${
+          userData.graduation_year || "N/A"
+        }</span>
       </div>
       <div class="flex flex-col">
         <span class="text-primary font-semibold text-xl flex items-center">
@@ -185,7 +207,9 @@ function populateAboutSection(userData) {
         <span class="text-primary font-semibold text-xl flex items-center">
           <i class="fas fa-book mr-2"></i>Year of Study
         </span>
-        <span class="text-gray-600 mt-4">${userData.year_of_study || "N/A"}</span>
+        <span class="text-gray-600 mt-4">${
+          userData.year_of_study || "N/A"
+        }</span>
       </div>
     </div>
   `;
