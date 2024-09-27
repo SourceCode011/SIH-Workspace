@@ -12,7 +12,6 @@ authServices.getCurrentUser(async (user) => {
     try {
       // Fetch user details
       const userDetails = await userServicesDB.getUser(user.uid);
-      console.log(userDetails);
 
       // Populate sidebar with user details
       document.querySelector("h2").textContent =

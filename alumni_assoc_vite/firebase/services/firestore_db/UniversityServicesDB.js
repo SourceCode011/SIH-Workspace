@@ -73,19 +73,17 @@ class UniversityServicesDB {
    * @return {Promise<void>} - A promise representing the asynchronous operation.
    */
   async addUniversityPost(unvPost) {
-    const postsCollectionRef = collection(
-      db,
-      UniversityServicesDB.POSTS_COLLECTION_NAME
-    );
+    const postId = unvPost.post_id;
+    const postRef = doc(db, UniversityServicesDB.POSTS_COLLECTION_NAME, postId);
 
     try {
-      await addDoc(postsCollectionRef, unvPost);
+      await setDoc(postRef, unvPost);
       console.log(
-        `${UniversityServicesDB.TAG}: University post added successfully: ${unvPost.unv_post_id}`
+        `${UniversityServicesDB.TAG}: University post added successfully: ${postId}`
       );
     } catch (e) {
       console.error(
-        `${UniversityServicesDB.TAG}: Error adding university post: ${unvPost.unv_post_id}`,
+        `${UniversityServicesDB.TAG}: Error adding university post: ${postId}`,
         e
       );
       throw e;
