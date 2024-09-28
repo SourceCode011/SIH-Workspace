@@ -106,3 +106,9 @@ searchInput.addEventListener("input", (event) => {
   const searchTerm = event.target.value.trim();
   debouncedSearch(searchTerm);
 });
+
+// Hamburger menu functionality
+document.getElementById("hamburger-menu").addEventListener("click", () => {
+  const leftSidebar = document.getElementById("left-sidebar");
+  leftSidebar.classList.toggle("hidden");
+});
